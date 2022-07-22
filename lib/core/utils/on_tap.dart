@@ -45,13 +45,18 @@ Future onRegister(GlobalKey<FormState> formKey, RegisterViewModel registerViewMo
 AuthWrapperViewModel wrapperViewModel, BuildContext context) async{
 
   if(formKey.currentState!.validate()){
-    String name = registerViewModel.name.trim();
-    String email = registerViewModel.email.trim();
     String password = registerViewModel.password.trim();
     String confirmPassword = registerViewModel.confirmPassword.trim();
-    wrapperViewModel.isLogin = true;
-    Navigator.pop(context);
-    Navigator.pop(context);
+    if(password == confirmPassword){
+      await registerViewModel.register(true);
+      wrapperViewModel.isLogin = true;
+      Navigator.pop(context);
+      Navigator.pop(context);
+    }else{
+      registerViewModel.errorMessage = 'password and confirm password is not matched';
+      SnackBar snackBar = SnackBar(content: Text(registerViewModel.errorMessage),);
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    }
 
   }else{
     registerViewModel.errorMessage = 'error';
