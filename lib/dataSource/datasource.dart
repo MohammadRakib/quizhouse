@@ -30,6 +30,7 @@ class Datasource{
   Future _onCreateDB(Database db, int version) async {
     // users table
     String id = 'id INTEGER PRIMARY KEY AUTOINCREMENT';
+    String name = 'name TEXT NOT NULL';
     String email = 'email TEXT NOT NULL';
     String password = 'password TEXT NOT NULL';
     String loginStatus = 'loginStatus BOOLEAN NOT NULL';
@@ -37,7 +38,7 @@ class Datasource{
     String lvl = 'lvl INTEGER NOT NULL';
     String coin = 'coin INTEGER NOT NULL';
     String gems = 'gems INTEGER NOT NULL';
-    String sqlUser = 'CREATE TABLE users($id, $email, $password, $loginStatus, $exp, $lvl, $coin, $gems)';
+    String sqlUser = 'CREATE TABLE users($id, $name, $email, $password, $loginStatus, $exp, $lvl, $coin, $gems)';
 
     db.execute(sqlUser);
 

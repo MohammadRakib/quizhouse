@@ -8,13 +8,11 @@ String get name => _name;
 
   set name(String value) {
     _name = value;
-    notifyListeners();
   }
 
 String get level => _level;
 
   set level(String value) {
     _level = value;
-    notifyListeners();
   }
 }

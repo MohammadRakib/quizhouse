@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quizhouse/core/utils/color.dart';
 import 'package:quizhouse/models/your_favourite_model.dart';
+import 'package:quizhouse/viewModels/home/home_view_model.dart';
 import 'package:quizhouse/viewModels/yourFavourite/your_favourite_view_model.dart';
 import 'package:quizhouse/views/appbar/home_appbar_view.dart';
 import 'package:quizhouse/views/home/challengeRoom/challenge_room_view.dart';
@@ -57,7 +58,6 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    AuthWrapperViewModel wrapperViewModel = context.watch<AuthWrapperViewModel>();
     YourFavouriteViewModel yourFavouriteViewModel = context.watch<YourFavouriteViewModel>();
     return SafeArea(
       child: Scaffold(

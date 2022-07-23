@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:quizhouse/services/auth_services.dart';
+
+import '../../models/user_model.dart';
 
 class LoginViewModel extends ChangeNotifier{
 
   String _email = '';
   String _password = '';
-  String _errorMessage = '';
 
   String get email => _email;
 
@@ -20,10 +22,8 @@ class LoginViewModel extends ChangeNotifier{
     notifyListeners();
   }
 
-  String get errorMessage => _errorMessage;
-
-  set errorMessage(String value) {
-    _errorMessage = value;
-    notifyListeners();
+  Future<bool> login(String email, String password) async{
+    return  await AuthServices().login(email,password);
   }
+
 }

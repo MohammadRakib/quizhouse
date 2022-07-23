@@ -6,6 +6,7 @@ import 'package:quizhouse/viewModels/auth/register_view_model.dart';
 import 'package:quizhouse/viewModels/category/category_view_model.dart';
 import 'package:quizhouse/viewModels/home/bcs/bcs_view_model.dart';
 import 'package:quizhouse/viewModels/home/challengeRoom/challenge_room_view_model.dart';
+import 'package:quizhouse/viewModels/home/home_view_model.dart';
 import 'package:quizhouse/viewModels/home/playerStatus/player_status_view_model.dart';
 import 'package:quizhouse/viewModels/home/runningTournament/running_tournament_view_model.dart';
 import 'package:quizhouse/viewModels/home/topTopic/top_topics_view_model.dart';
@@ -20,6 +21,7 @@ import 'package:quizhouse/viewModels/auth/mobile_login_view_model.dart';
 import 'package:quizhouse/viewModels/wrapper/auth_wrapper_view_model.dart';
 import 'package:quizhouse/views/wrapper/home_wrapper.dart';
 import 'package:provider/provider.dart';
+import 'package:quizhouse/views/wrapper/main_wrapper.dart';
 
 void main() {
   runApp(const MyApp());
@@ -38,6 +40,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<MobileLoginViewModel>(create: (_) => MobileLoginViewModel()),
         ChangeNotifierProvider<MobileRegisterViewModel>(create: (_) => MobileRegisterViewModel()),
         ChangeNotifierProvider<HomeAppBarViewModel>(create: (_) => HomeAppBarViewModel()),
+        ChangeNotifierProvider<HomeViewModel>(create: (_) => HomeViewModel()),
         ChangeNotifierProvider<ChallengeRoomViewModel>(create: (_) => ChallengeRoomViewModel()),
         ChangeNotifierProvider<PlayerStatusViewModel>(create: (_) => PlayerStatusViewModel()),
         ChangeNotifierProvider<RunningTournamentViewModel>(create: (_) => RunningTournamentViewModel()),
@@ -54,7 +57,7 @@ class MyApp extends StatelessWidget {
           brightness: Brightness.light,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        home: const AuthWrapper(),
+        home: const MainWrapper(),
         // home: const HomeWrapper(),
       ),
     );

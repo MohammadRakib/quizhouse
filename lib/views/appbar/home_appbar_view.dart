@@ -3,6 +3,10 @@ import 'package:quizhouse/core/utils/color.dart';
 import 'package:quizhouse/viewModels/appbar/home_appbar_view_model.dart';
 import 'package:provider/provider.dart';
 
+import '../../services/auth_services.dart';
+import '../../viewModels/home/home_view_model.dart';
+import '../../viewModels/wrapper/auth_wrapper_view_model.dart';
+
 class HomeAppBarView extends StatelessWidget implements PreferredSizeWidget{
 
   final double height;
@@ -14,6 +18,12 @@ class HomeAppBarView extends StatelessWidget implements PreferredSizeWidget{
   @override
   Widget build(BuildContext context) {
     HomeAppBarViewModel homeAppBarViewModel = context.watch<HomeAppBarViewModel>();
+    AuthWrapperViewModel wrapperViewModel = context.watch<AuthWrapperViewModel>();
+    HomeViewModel homeViewModel = context.watch<HomeViewModel>();
+    if(homeViewModel.currentUser != null){
+      homeAppBarViewModel.name = homeViewModel.currentUser!.name;
+      homeAppBarViewModel.level = homeViewModel.currentUser!.lvl.toString();
+    }
     final size = MediaQuery.of(context).size;
     final height = size.height;
     final width = size.width;
@@ -64,10 +74,13 @@ class HomeAppBarView extends StatelessWidget implements PreferredSizeWidget{
             top: 8,
             right: 1,
               child: IconButton(
-                  onPressed: (){
-                    
+                  onPressed: () async{
+                    if(await AuthServices().logout()){
+                      wrapperViewModel.isLogin = false;
+                      wrapperViewModel.stateChange();
+                    }
                   },
-                  icon: const Icon(Icons.menu,
+                  icon: const Icon(Icons.logout_rounded,
                     color: Color(primaryColor),
                   ),
               ),

@@ -15,13 +15,15 @@ Future onSignIn(GlobalKey<FormState> formKey, LoginViewModel loginViewModel,
 
         String email = loginViewModel.email.trim();
         String password = loginViewModel.password.trim();
-        wrapperViewModel.isLogin = true;
-        Navigator.pop(context);
-
-      }else{
-        loginViewModel.errorMessage = 'error';
-        SnackBar snackBar = SnackBar(content: Text(loginViewModel.errorMessage),);
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        bool loginSuccess = await loginViewModel.login(email, password);
+        if(loginSuccess){
+          wrapperViewModel.isLogin = true;
+          wrapperViewModel.stateChange();
+          Navigator.pop(context);
+        }else{
+          SnackBar snackBar = const SnackBar(content: Text('email or password is wrong'),);
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        }
       }
 }
 
@@ -36,33 +38,29 @@ Future onMobileSignIn(GlobalKey<FormState> formKey, MobileLoginViewModel mobileL
       Navigator.push(context, MaterialPageRoute<String>(
         builder: (BuildContext context) => MobileRegisterView(),
       ),);
-
     }
-
 }
 
 Future onRegister(GlobalKey<FormState> formKey, RegisterViewModel registerViewModel,
 AuthWrapperViewModel wrapperViewModel, BuildContext context) async{
 
   if(formKey.currentState!.validate()){
-    String password = registerViewModel.password.trim();
-    String confirmPassword = registerViewModel.confirmPassword.trim();
-    if(password == confirmPassword){
-      await registerViewModel.register(true);
-      wrapperViewModel.isLogin = true;
-      Navigator.pop(context);
-      Navigator.pop(context);
-    }else{
-      registerViewModel.errorMessage = 'password and confirm password is not matched';
-      SnackBar snackBar = SnackBar(content: Text(registerViewModel.errorMessage),);
-      ScaffoldMessenger.of(context).showSnackBar(snackBar);
-    }
-
-  }else{
-    registerViewModel.errorMessage = 'error';
-    SnackBar snackBar = SnackBar(content: Text(registerViewModel.errorMessage),);
-    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      final registerSuccess = await registerViewModel.register(true);
+      if(registerSuccess){
+        wrapperViewModel.isLogin = true;
+        wrapperViewModel.stateChange();
+        Navigator.pop(context);
+        Navigator.pop(context);
+      }else{
+        SnackBar snackBar = const SnackBar(content: Text('user already exist'),);
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      }
   }
+  // else{
+  //   registerViewModel.errorMessage = 'error';
+  //   SnackBar snackBar = SnackBar(content: Text(registerViewModel.errorMessage),);
+  //   ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  // }
 }
 
 Future onMobileRegister(GlobalKey<FormState> formKey, MobileRegisterViewModel mobileRegisterViewModel,

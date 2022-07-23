@@ -9,18 +9,11 @@ class RegisterViewModel extends ChangeNotifier{
   String _email = '';
   String _password = '';
   String _confirmPassword = '';
-  String _errorMessage = '';
 
   String get name => _name;
 
   set name(String value) {
     _name = value;
-  }
-
-  String get errorMessage => _errorMessage;
-
-  set errorMessage(String value) {
-    _errorMessage = value;
   }
 
   String get email => _email;
@@ -41,9 +34,9 @@ class RegisterViewModel extends ChangeNotifier{
     _password = value;
   }
 
-  Future register(bool loginStatus) async{
-    UserModel _usermodel = UserModel(email: email.trim(), password: password.trim(), loginStatus: loginStatus,exp: 0,
+  Future<bool> register(bool loginStatus) async{
+    UserModel _usermodel = UserModel(name: name.trim(), email: email.trim(), password: password.trim(), loginStatus: loginStatus,exp: 0,
                                       lvl: 1, coin: 10000, gems: 10000);
-    AuthServices().register(_usermodel);
+    return await AuthServices().register(_usermodel);
   }
 }
