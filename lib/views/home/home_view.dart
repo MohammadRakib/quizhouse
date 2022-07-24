@@ -20,7 +20,7 @@ class HomeView extends StatelessWidget {
   dynamic buildListView(int index, YourFavouriteViewModel yourFavouriteViewModel){
     if(index == 0){
 
-      return const PlayerStatusView();
+      return PlayerStatusView();
 
     }else if(index == 1){
       return Padding(
@@ -62,7 +62,7 @@ class HomeView extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         backgroundColor: const Color(homeBackGroundColor),
-        appBar: const HomeAppBarView(height: 61,),
+        appBar: HomeAppBarView(height: 61,),
         body: ListView.builder(
           itemCount: 6 + yourFavouriteViewModel.items.length,
           itemBuilder: (context,index) =>  buildListView(index,yourFavouriteViewModel),

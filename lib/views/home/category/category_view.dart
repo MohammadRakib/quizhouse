@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:quizhouse/viewModels/category/category_view_model.dart';
-import 'package:quizhouse/views/category/category_item_view.dart';
+import 'package:quizhouse/core/utils/color.dart';
+import 'package:quizhouse/viewModels/home/category/category_view_model.dart';
+import 'package:quizhouse/views/home/category/category_item_view.dart';
 import 'package:provider/provider.dart';
 
-import '../../core/utils/color.dart';
 
 class CategoryView extends StatelessWidget {
   const CategoryView({Key? key}) : super(key: key);

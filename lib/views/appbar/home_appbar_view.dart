@@ -10,19 +10,21 @@ import '../../viewModels/wrapper/auth_wrapper_view_model.dart';
 class HomeAppBarView extends StatelessWidget implements PreferredSizeWidget{
 
   final double height;
-  const HomeAppBarView({Key? key, this.height = kToolbarHeight,}) : super(key: key);
+  HomeAppBarView({Key? key, this.height = kToolbarHeight,}) : super(key: key);
+  String name = 'Dummy';
+  String lvl = '1';
 
   @override
   Size get preferredSize => Size.fromHeight(height);
 
   @override
   Widget build(BuildContext context) {
-    HomeAppBarViewModel homeAppBarViewModel = context.watch<HomeAppBarViewModel>();
     AuthWrapperViewModel wrapperViewModel = context.watch<AuthWrapperViewModel>();
     HomeViewModel homeViewModel = context.watch<HomeViewModel>();
+
     if(homeViewModel.currentUser != null){
-      homeAppBarViewModel.name = homeViewModel.currentUser!.name;
-      homeAppBarViewModel.level = homeViewModel.currentUser!.lvl.toString();
+      name = homeViewModel.currentUser!.name;
+      lvl = homeViewModel.currentUser!.lvl.toString();
     }
     final size = MediaQuery.of(context).size;
     final height = size.height;
@@ -50,7 +52,7 @@ class HomeAppBarView extends StatelessWidget implements PreferredSizeWidget{
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'hi, ${homeAppBarViewModel.name}',
+                  'hi, $name',
                   style: const TextStyle(
                     fontSize: 15.0,
                     color: Color(appBarTitleColor),
@@ -59,7 +61,7 @@ class HomeAppBarView extends StatelessWidget implements PreferredSizeWidget{
                  Padding(
                   padding: const EdgeInsets.only(top: 3.0),
                   child: Text(
-                    'your current level is ${homeAppBarViewModel.level}',
+                    'your current level is $lvl',
                     style: const TextStyle(
                       fontSize: 12.0,
                       color: Color(appBarSubTitleColor),

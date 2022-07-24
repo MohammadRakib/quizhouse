@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:quizhouse/core/utils/color.dart';
 import 'package:quizhouse/models/category_model.dart';
-import 'package:quizhouse/viewModels/category/category_view_model.dart';
-import 'package:quizhouse/views/play/play_view.dart';
 import 'package:quizhouse/views/play/play_view_wrapper.dart';
-
-import '../../core/utils/color.dart';
 
 class CategoryItemView extends StatelessWidget {
 

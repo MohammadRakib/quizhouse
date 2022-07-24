@@ -4,13 +4,28 @@ import 'package:quizhouse/viewModels/home/playerStatus/player_status_view_model.
 import 'package:provider/provider.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
+import '../../../viewModels/home/home_view_model.dart';
+
 class PlayerStatusView extends StatelessWidget {
-  const PlayerStatusView({Key? key}) : super(key: key);
+  PlayerStatusView({Key? key}) : super(key: key);
+
+  String level = '1';
+  String levelPercentage = '0';
+  String coin = '10000';
+  String gems = '10000';
 
   @override
   Widget build(BuildContext context) {
 
-    PlayerStatusViewModel playerStatusViewModel = context.watch<PlayerStatusViewModel>();
+    HomeViewModel homeViewModel = context.watch<HomeViewModel>();
+
+    if(homeViewModel.currentUser != null){
+      level = homeViewModel.currentUser!.lvl.toString();
+      levelPercentage = homeViewModel.currentUser!.exp.toString();
+      coin = homeViewModel.currentUser!.coin.toString();
+      gems = homeViewModel.currentUser!.gems.toString();
+    }
+
     final size = MediaQuery.of(context).size;
     final height = size.height;
     final width = size.width;
@@ -43,8 +58,8 @@ class PlayerStatusView extends StatelessWidget {
                   child: CircularPercentIndicator(
                     radius: orientation == Orientation.portrait? height/93 : width/105,
                     lineWidth: 1.0,
-                    percent: double.parse(playerStatusViewModel.levelPercentage)/100,
-                    center: Text("${playerStatusViewModel.levelPercentage}%",
+                    percent: double.parse(levelPercentage),
+                    center: Text("$levelPercentage%",
                     style: TextStyle(
                       fontSize: orientation == Orientation.portrait? height/155 : width/165,
                     ),
@@ -53,7 +68,7 @@ class PlayerStatusView extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(width: 3,),
-                Text('Level ${playerStatusViewModel.level}',
+                Text('Level $level',
                  style: TextStyle(
                    fontSize: orientation == Orientation.portrait? height/100 : width/110,
                  ),
@@ -85,7 +100,7 @@ class PlayerStatusView extends StatelessWidget {
                   height: orientation == Orientation.portrait? height/30 : height/32,
                 ),
                 const SizedBox(width: 3,),
-                Text(playerStatusViewModel.coin,
+                Text(coin,
                   style: TextStyle(
                     fontSize: orientation == Orientation.portrait? height/100 : width/110,
                   ),
@@ -117,7 +132,7 @@ class PlayerStatusView extends StatelessWidget {
                   height: orientation == Orientation.portrait? height/30 : height/32,
                 ),
                 const SizedBox(width: 3,),
-                Text(playerStatusViewModel.gems,
+                Text(gems,
                   style: TextStyle(
                     fontSize: orientation == Orientation.portrait? height/100 : width/110,
                   ),

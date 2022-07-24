@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quizhouse/core/utils/color.dart';
-import 'package:quizhouse/views/category/category_view.dart';
+import 'package:quizhouse/views/home/category/category_view.dart';
 import 'package:quizhouse/views/home/home_view.dart';
 import 'package:quizhouse/views/maintenance_view.dart';
 import 'package:provider/provider.dart';

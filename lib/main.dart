@@ -3,7 +3,7 @@ import 'package:quizhouse/core/utils/color.dart';
 import 'package:quizhouse/viewModels/appbar/home_appbar_view_model.dart';
 import 'package:quizhouse/viewModels/auth/mobile_register_view_model.dart';
 import 'package:quizhouse/viewModels/auth/register_view_model.dart';
-import 'package:quizhouse/viewModels/category/category_view_model.dart';
+import 'package:quizhouse/viewModels/home/category/category_view_model.dart';
 import 'package:quizhouse/viewModels/home/bcs/bcs_view_model.dart';
 import 'package:quizhouse/viewModels/home/challengeRoom/challenge_room_view_model.dart';
 import 'package:quizhouse/viewModels/home/home_view_model.dart';
@@ -11,15 +11,9 @@ import 'package:quizhouse/viewModels/home/playerStatus/player_status_view_model.
 import 'package:quizhouse/viewModels/home/runningTournament/running_tournament_view_model.dart';
 import 'package:quizhouse/viewModels/home/topTopic/top_topics_view_model.dart';
 import 'package:quizhouse/viewModels/yourFavourite/your_favourite_view_model.dart';
-import 'package:quizhouse/views/category/category_view.dart';
-import 'package:quizhouse/views/home/challengeRoom/challenge_room_view.dart';
-import 'package:quizhouse/views/home/home_view.dart';
-import 'package:quizhouse/views/play/play_view_wrapper.dart';
-import 'package:quizhouse/views/wrapper/auth_wrapper.dart';
 import 'package:quizhouse/viewModels/auth/login_view_model.dart';
 import 'package:quizhouse/viewModels/auth/mobile_login_view_model.dart';
 import 'package:quizhouse/viewModels/wrapper/auth_wrapper_view_model.dart';
-import 'package:quizhouse/views/wrapper/home_wrapper.dart';
 import 'package:provider/provider.dart';
 import 'package:quizhouse/views/wrapper/main_wrapper.dart';
 
