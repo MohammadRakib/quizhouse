@@ -1,11 +1,20 @@
 
 import 'package:flutter/material.dart';
+import 'package:quizhouse/models/user_model.dart';
 
-class PlayerStatusViewModel extends ChangeNotifier{
+class PlayerStatusViewModel{
   String _level = '100';
   String _levelPercentage = '100';
   String _coin = '100000000';
   String _gems = '100000000';
+  UserModel? userModel;
+
+  PlayerStatusViewModel({required this.userModel}){
+    level = userModel!.lvl.toString();
+    levelPercentage = userModel!.exp.toString();
+    coin = userModel!.coin.toString();
+    gems = userModel!.gems.toString();
+  }
 
   String get level => _level;
 
@@ -30,14 +39,6 @@ class PlayerStatusViewModel extends ChangeNotifier{
 
   set levelPercentage(String value) {
     _levelPercentage = value;
-  }
-
-  void setStatus(String level, String levelPercentage, String coin, String gems){
-    this.level = level;
-    this.levelPercentage = levelPercentage;
-    this.coin = coin;
-    this.gems = gems;
-    notifyListeners();
   }
 
 }

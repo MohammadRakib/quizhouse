@@ -19,11 +19,11 @@ class PlayerStatusView extends StatelessWidget {
 
     HomeViewModel homeViewModel = context.watch<HomeViewModel>();
 
-    if(homeViewModel.currentUser != null){
-      level = homeViewModel.currentUser!.lvl.toString();
-      levelPercentage = homeViewModel.currentUser!.exp.toString();
-      coin = homeViewModel.currentUser!.coin.toString();
-      gems = homeViewModel.currentUser!.gems.toString();
+    if(homeViewModel.playerStatusViewModel != null){
+      level = homeViewModel.playerStatusViewModel!.level;
+      levelPercentage = homeViewModel.playerStatusViewModel!.levelPercentage;
+      coin = homeViewModel.playerStatusViewModel!.coin;
+      gems = homeViewModel.playerStatusViewModel!.gems;
     }
 
     final size = MediaQuery.of(context).size;

@@ -22,9 +22,9 @@ class HomeAppBarView extends StatelessWidget implements PreferredSizeWidget{
     AuthWrapperViewModel wrapperViewModel = context.watch<AuthWrapperViewModel>();
     HomeViewModel homeViewModel = context.watch<HomeViewModel>();
 
-    if(homeViewModel.currentUser != null){
-      name = homeViewModel.currentUser!.name;
-      lvl = homeViewModel.currentUser!.lvl.toString();
+    if(homeViewModel.homeAppBarViewModel != null){
+      name = homeViewModel.homeAppBarViewModel!.name;
+      lvl = homeViewModel.homeAppBarViewModel!.level;
     }
     final size = MediaQuery.of(context).size;
     final height = size.height;
