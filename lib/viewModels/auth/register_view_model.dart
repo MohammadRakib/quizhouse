@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quizhouse/models/user_model.dart';
 
-import '../../services/auth_services.dart';
+import '../../services/user_services.dart';
 
 class RegisterViewModel extends ChangeNotifier{
 
@@ -37,6 +37,6 @@ class RegisterViewModel extends ChangeNotifier{
   Future<bool> register(bool loginStatus) async{
     UserModel _usermodel = UserModel(name: name.trim(), email: email.trim(), password: password.trim(), loginStatus: loginStatus,exp: 0,
                                       lvl: 1, coin: 10000, gems: 10000);
-    return await AuthServices().register(_usermodel);
+    return await UserServices().register(_usermodel);
   }
 }

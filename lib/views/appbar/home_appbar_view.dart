@@ -3,7 +3,7 @@ import 'package:quizhouse/core/utils/color.dart';
 import 'package:quizhouse/viewModels/appbar/home_appbar_view_model.dart';
 import 'package:provider/provider.dart';
 
-import '../../services/auth_services.dart';
+import '../../services/user_services.dart';
 import '../../viewModels/home/home_view_model.dart';
 import '../../viewModels/wrapper/auth_wrapper_view_model.dart';
 
@@ -77,7 +77,7 @@ class HomeAppBarView extends StatelessWidget implements PreferredSizeWidget{
             right: 1,
               child: IconButton(
                   onPressed: () async{
-                    if(await AuthServices().logout()){
+                    if(await UserServices().logout()){
                       wrapperViewModel.isLogin = false;
                       wrapperViewModel.stateChange();
                     }

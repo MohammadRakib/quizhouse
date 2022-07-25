@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quizhouse/services/auth_services.dart';
+import 'package:quizhouse/services/user_services.dart';
 
 import '../../models/user_model.dart';
 
@@ -23,7 +23,7 @@ class LoginViewModel extends ChangeNotifier{
   }
 
   Future<bool> login(String email, String password) async{
-    return  await AuthServices().login(email,password);
+    return  await UserServices().login(email,password);
   }
 
 }

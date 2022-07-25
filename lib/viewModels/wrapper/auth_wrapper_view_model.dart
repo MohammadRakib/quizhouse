@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:quizhouse/services/auth_services.dart';
+import 'package:quizhouse/services/user_services.dart';
 
 import '../../models/user_model.dart';
 
@@ -20,7 +20,7 @@ class AuthWrapperViewModel extends ChangeNotifier{
 
   //Check if login
 Future<bool> checkIfLogin()async{
-  UserModel? currentUser = await AuthServices().getCurrentUser();
+  UserModel? currentUser = await UserServices().getCurrentUser();
   if(currentUser != null){
     return true;
   }else{

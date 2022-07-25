@@ -1,14 +1,14 @@
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
-class Datasource{
-  static final Datasource _datasource = Datasource._();
+class DbRepository{
+  static final DbRepository _dbRepository = DbRepository._();
   static Database? _database;
 
-  Datasource._();
+  DbRepository._();
 
-  factory Datasource(){
-    return _datasource;
+  factory DbRepository(){
+    return _dbRepository;
   }
 
 // get the database

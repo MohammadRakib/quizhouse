@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:quizhouse/models/user_model.dart';
-import 'package:quizhouse/services/auth_services.dart';
+import 'package:quizhouse/repository/category_repository.dart';
+import 'package:quizhouse/services/user_services.dart';
 import 'package:quizhouse/viewModels/appbar/home_appbar_view_model.dart';
 import 'package:quizhouse/viewModels/home/playerStatus/player_status_view_model.dart';
 
@@ -21,20 +22,14 @@ class HomeViewModel extends ChangeNotifier{
     _homeAppBarViewModel = value;
   }
 
-  UserModel? get currentUser => _currentUser;
-
-  set currentUser(UserModel? value) {
-    _currentUser = value;
-  }
-
   HomeViewModel(){
     getCurrentUser();
   }
 
   Future getCurrentUser() async{
-     currentUser = await AuthServices().getCurrentUser();
-     homeAppBarViewModel = HomeAppBarViewModel(userModel: currentUser);
-     playerStatusViewModel = PlayerStatusViewModel(userModel: currentUser);
+     _currentUser = await UserServices().getCurrentUser();
+     homeAppBarViewModel = HomeAppBarViewModel(userModel: _currentUser);
+     playerStatusViewModel = PlayerStatusViewModel(userModel: _currentUser);
      notifyListeners();
   }
 }
