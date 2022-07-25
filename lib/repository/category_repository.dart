@@ -6,9 +6,10 @@ class CategoryRepository{
     final db = await DbRepository().database;
     String id = 'id INTEGER PRIMARY KEY AUTOINCREMENT';
     String name = 'name TEXT NOT NULL';
+    String imageUri = 'imageUri TEXT NOT NULL';
     String completion = 'completion TEXT NOT NULL';
 
-    String sqlCategory = 'CREATE TABLE IF NOT EXISTS category($id, $name, $completion)';
+    String sqlCategory = 'CREATE TABLE IF NOT EXISTS category($id, $name, $imageUri, $completion)';
     db.execute(sqlCategory);
   }
 

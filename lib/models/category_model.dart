@@ -1,13 +1,13 @@
 class CategoryModel{
 
+  String name;
   String imageUri;
-  String title;
-  bool favourite;
+  String completion;
 
-  CategoryModel({required this.title,required this.imageUri,required this.favourite});
+  CategoryModel({required this.name,required this.imageUri,required this.completion});
 
   @override
   String toString() {
-    return 'CategoryModel{imageUri: $imageUri, title: $title, favourite: $favourite}';
+    return 'CategoryModel{name: $name, imageUri: $imageUri, completion: $completion}';
   }
 }
