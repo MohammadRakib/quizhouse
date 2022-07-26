@@ -1,23 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:quizhouse/core/utils/color.dart';
-import 'package:quizhouse/models/your_favourite_model.dart';
-import 'package:quizhouse/viewModels/home/home_view_model.dart';
-import 'package:quizhouse/viewModels/yourFavourite/your_favourite_view_model.dart';
+import 'package:quizhouse/models/category_model.dart';
+import 'package:quizhouse/viewModels/home/category/category_view_model.dart';
 import 'package:quizhouse/views/appbar/home_appbar_view.dart';
+import 'package:quizhouse/views/home/category/category_item_view.dart';
 import 'package:quizhouse/views/home/challengeRoom/challenge_room_view.dart';
 import 'package:quizhouse/views/home/playerStatus/player_status_view.dart';
 import 'package:quizhouse/views/home/runningTournament/running_tournament_view.dart';
-import 'package:quizhouse/views/home/topTopic/top_topics_view.dart';
-import 'package:quizhouse/views/yourFavourite/your_favourite_item_view.dart';
 import 'package:provider/provider.dart';
-
-import '../../viewModels/wrapper/auth_wrapper_view_model.dart';
 import 'bcs/bcs_view.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({Key? key}) : super(key: key);
 
-  dynamic buildListView(int index, YourFavouriteViewModel yourFavouriteViewModel){
+  dynamic buildListView(int index, List<CategoryModel> categoryList){
     if(index == 0){
 
       return PlayerStatusView();
@@ -33,40 +29,34 @@ class HomeView extends StatelessWidget {
         child: RunningTournamentView(),
       );
     }else if(index == 3){
-      return const Padding(
-        padding: EdgeInsets.only(top: 15),
-        child: TopTopicsView(),
-      );
-    }else if(index == 4){
       return Padding(
         padding: const EdgeInsets.only(top: 15),
         child: BcsView(),
       );
-    }else if(index == 5){
+    }else if(index == 4){
       return const Padding(
         padding: EdgeInsets.fromLTRB(15, 15, 0, 15),
-        child: Text('Your Favourite',
+        child: Text('Category',
           style: TextStyle(
             fontWeight: FontWeight.bold,
           ),
         ),
       );
     }else{
-      return YourFavouriteItemView(yourFavouriteModel: yourFavouriteViewModel.items[index - 6],);
+      return CategoryItemView(name: categoryList[index-5].name, imageUri: categoryList[index-5].imageUri, completion: categoryList[index-5].completion);
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    YourFavouriteViewModel yourFavouriteViewModel = context.watch<YourFavouriteViewModel>();
+    CategoryViewModel categoryViewModel = context.watch<CategoryViewModel>();
     return SafeArea(
       child: Scaffold(
         backgroundColor: const Color(homeBackGroundColor),
         appBar: HomeAppBarView(height: 61,),
         body: ListView.builder(
-          itemCount: 6 + yourFavouriteViewModel.items.length,
-          itemBuilder: (context,index) =>  buildListView(index,yourFavouriteViewModel),
-
+          itemCount: 5 + categoryViewModel.items.length,
+          itemBuilder: (context,index) =>  buildListView(index,categoryViewModel.items),
         ),
       ),
     );

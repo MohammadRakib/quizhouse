@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:quizhouse/core/utils/color.dart';
-import 'package:quizhouse/views/home/category/category_view.dart';
 import 'package:quizhouse/views/home/home_view.dart';
 import 'package:quizhouse/views/maintenance_view.dart';
 import 'package:provider/provider.dart';
@@ -16,7 +15,7 @@ class HomeWrapper extends StatefulWidget {
 
 class _HomeWrapperState extends State<HomeWrapper> {
 
-  List<Widget> states = [const CategoryView(), const MaintenanceView(), const HomeView(), const MaintenanceView(), const MaintenanceView()];
+  List<Widget> states = [const MaintenanceView(), const MaintenanceView(), const HomeView(), const MaintenanceView(), const MaintenanceView()];
   int _state = 2;
 
   @override

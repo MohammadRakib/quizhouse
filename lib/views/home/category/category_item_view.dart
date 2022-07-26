@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:quizhouse/core/utils/color.dart';
 import 'package:quizhouse/models/category_model.dart';
 import 'package:quizhouse/views/play/play_view_wrapper.dart';
 
 class CategoryItemView extends StatelessWidget {
 
-  CategoryModel categoryModel;
-  CategoryItemView({Key? key,required this.categoryModel}) : super(key: key);
+  String name;
+  String imageUri;
+  String completion;
+  CategoryItemView({Key? key,required this.name, required this.imageUri, required this.completion}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,49 +20,54 @@ class CategoryItemView extends StatelessWidget {
     final orientation = MediaQuery.of(context).orientation;
 
     return InkWell(
-      child: Container(
-        margin: orientation == Orientation.portrait? const EdgeInsets.fromLTRB(10, 8, 10, 10) : const EdgeInsets.fromLTRB(10, 8, 10, 10),
-        padding: const EdgeInsets.symmetric(horizontal: 10),
-        decoration: const BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(15.0)),
-          color: Color(topTopicsItemViewColor),
-        ),
-
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
+      child: Padding(
+        padding: const EdgeInsets.all(5.0),
+        child: Card(
+          child: ListTile(
+            leading: CircleAvatar(
+              backgroundImage: AssetImage(imageUri),
+            ),
+            title: Padding(
+              padding: const EdgeInsets.only(top: 5),
+              child: Text(name),
+            ),
+            subtitle: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: width/50),
-                  child: Icon(Icons.star,
-                    color: Colors.grey,
-                    size: orientation == Orientation.portrait? width/30 : width/30,
+                  padding: const EdgeInsets.symmetric(vertical: 5),
+                  child: Row(
+                    children: [
+                      const Text('You have completed '),
+                      Text('$completion%',
+                        style: const TextStyle(
+                          color: Color(primaryColor),
+                        ),
+
+                      ),
+                    ],
                   ),
                 ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 5),
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 5),
+                    child: LinearPercentIndicator(
+                      padding: EdgeInsets.zero,
+                      lineHeight: 8.0,
+                      percent: double.parse(completion)/100,
+                      progressColor: Colors.blue,
+                    ),
+                  ),
+                )
               ],
             ),
-
-            SizedBox(height: orientation == Orientation.portrait? height/40 : height/40,),
-            Image.asset(categoryModel.imageUri,
-              height: orientation == Orientation.portrait? width/6 : width/8,
-              width: orientation == Orientation.portrait? width/6 : width/8,
-            ),
-            const SizedBox(height: 10,),
-            Text(categoryModel.title,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: orientation == Orientation.portrait? width/20 : width/25,
-              ),
-            ),
-            const SizedBox(height: 10,),
-          ],
+          ),
         ),
       ),
       onTap: (){
         Navigator.push(context, MaterialPageRoute<String>(
-          builder: (BuildContext context) => PlayViewWrapper(title: categoryModel.title,),
+          builder: (BuildContext context) => PlayViewWrapper(title: name,),
         ),);
       },
     );

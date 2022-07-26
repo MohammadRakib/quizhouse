@@ -1,5 +1,3 @@
-
-import 'package:flutter/material.dart';
 import 'package:quizhouse/models/user_model.dart';
 
 class PlayerStatusViewModel{
