@@ -1,35 +1,44 @@
 import 'package:flutter/cupertino.dart';
-import 'package:quizhouse/models/user_model.dart';
-import 'package:quizhouse/repository/category_repository.dart';
-import 'package:quizhouse/services/user_services.dart';
-import 'package:quizhouse/viewModels/appbar/home_appbar_view_model.dart';
-import 'package:quizhouse/viewModels/home/playerStatus/player_status_view_model.dart';
+import 'package:quizhouse/views/home/bcs/bcs_view.dart';
+import 'package:quizhouse/views/home/category/category_item_view.dart';
+import 'package:quizhouse/views/home/challengeRoom/challenge_room_view.dart';
+import 'package:quizhouse/views/home/playerStatus/player_status_view.dart';
+import 'package:quizhouse/views/home/runningTournament/running_tournament_view.dart';
 
 class HomeViewModel extends ChangeNotifier{
-  UserModel? _currentUser;
-  HomeAppBarViewModel? _homeAppBarViewModel;
-  PlayerStatusViewModel? _playerStatusViewModel;
 
-  PlayerStatusViewModel? get playerStatusViewModel => _playerStatusViewModel;
 
-  set playerStatusViewModel(PlayerStatusViewModel? value) {
-    _playerStatusViewModel = value;
-  }
+  dynamic buildListView(int index, List<CategoryItemView> categoryList){
+    if(index == 0){
 
-  HomeAppBarViewModel? get homeAppBarViewModel => _homeAppBarViewModel;
+      return PlayerStatusView();
 
-  set homeAppBarViewModel(HomeAppBarViewModel? value) {
-    _homeAppBarViewModel = value;
-  }
-
-  HomeViewModel(){
-    getCurrentUser();
-  }
-
-  Future getCurrentUser() async{
-     _currentUser = await UserServices().getCurrentUser();
-     homeAppBarViewModel = HomeAppBarViewModel(userModel: _currentUser);
-     playerStatusViewModel = PlayerStatusViewModel(userModel: _currentUser);
-     notifyListeners();
+    }else if(index == 1){
+      return Padding(
+        padding: const EdgeInsets.only(top: 15),
+        child: ChallengeRoomView(),
+      );
+    }else if(index == 2){
+      return const Padding(
+        padding: EdgeInsets.only(top: 15),
+        child: RunningTournamentView(),
+      );
+    }else if(index == 3){
+      return Padding(
+        padding: const EdgeInsets.only(top: 15),
+        child: BcsView(),
+      );
+    }else if(index == 4){
+      return const Padding(
+        padding: EdgeInsets.fromLTRB(15, 15, 0, 15),
+        child: Text('Category',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      );
+    }else{
+      return categoryList[index - 5];
+    }
   }
 }

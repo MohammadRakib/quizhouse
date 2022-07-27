@@ -130,7 +130,7 @@ class RegisterView extends StatelessWidget {
                             )),
                           ),
                           onPressed: (){
-                            onRegister(_formKey, registerViewModel, wrapperViewModel, context);
+                            registerViewModel.onRegister(_formKey, wrapperViewModel, context);
                           },
                           child: const Text('Sign Up'),
                         ),

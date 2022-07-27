@@ -1,23 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:quizhouse/models/category_model.dart';
 import 'package:quizhouse/services/category_services.dart';
+import 'package:quizhouse/views/home/category/category_item_view.dart';
 
 class CategoryViewModel extends ChangeNotifier{
   List<CategoryModel> _items = [];
+  List<CategoryItemView> _categoryItem = [];
 
-  List<CategoryModel> get items => _items;
+  List<CategoryItemView> get categoryItem => _categoryItem;
 
-  set items(List<CategoryModel> value) {
-    _items = value;
+  set categoryItem(List<CategoryItemView> value) {
+    _categoryItem = value;
+    notifyListeners();
   }
-
 
   CategoryViewModel(){
     getCategory();
   }
 
   Future getCategory() async{
-    items = await CategoryServices().getCategory();
-    notifyListeners();
+    _items = await CategoryServices().getCategory();
+    categoryItem = generatingCategoryItemList();
+  }
+
+  List<CategoryItemView> generatingCategoryItemList(){
+    return List.generate(_items.length, (index) =>
+     CategoryItemView(name: _items[index].name, imageUri: _items[index].imageUri, completion: _items[index].completion)
+    );
   }
 }

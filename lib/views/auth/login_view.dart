@@ -4,10 +4,8 @@ import 'package:quizhouse/views/auth/mobile_login_view.dart';
 import 'package:quizhouse/views/auth/register_view.dart';
 import 'package:quizhouse/viewModels/auth/login_view_model.dart';
 import 'package:provider/provider.dart';
-
 import '../../core/sharedWidgets//decoration.dart';
 import '../../core/utils/color.dart';
-import '../../core/utils/on_tap.dart';
 import '../../core/utils/padding_margin.dart';
 import '../../viewModels/wrapper/auth_wrapper_view_model.dart';
 
@@ -124,7 +122,7 @@ class LoginView extends StatelessWidget {
                            )),
                          ),
                          onPressed: (){
-                           onSignIn(_formKey,loginViewModel,wrapperViewModel,context);
+                           loginViewModel.onSignIn(_formKey, wrapperViewModel, context);
                          },
                          child: const Text('Sign In'),
                        ),
@@ -165,14 +163,14 @@ class LoginView extends StatelessWidget {
                                   builder: (BuildContext context) => RegisterView(),
                                 ),);
                               },
+                            style: ButtonStyle(
+                              overlayColor: MaterialStateProperty.all(const Color(backGroundColor)),
+                            ),
                               child: const Text('Sign up Now!',
                               style: TextStyle(
                                 color: Color(primaryColor),
                               ),
                               ),
-                            style: ButtonStyle(
-                              overlayColor: MaterialStateProperty.all(const Color(backGroundColor)),
-                            ),
                           ),
                         ],
                       ),

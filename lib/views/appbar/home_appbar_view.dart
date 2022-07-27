@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:quizhouse/core/utils/color.dart';
-import 'package:quizhouse/viewModels/appbar/home_appbar_view_model.dart';
 import 'package:provider/provider.dart';
+import 'package:quizhouse/viewModels/user/user_view_model.dart';
 
 import '../../services/user_services.dart';
-import '../../viewModels/home/home_view_model.dart';
 import '../../viewModels/wrapper/auth_wrapper_view_model.dart';
 
 class HomeAppBarView extends StatelessWidget implements PreferredSizeWidget{
 
   final double height;
   HomeAppBarView({Key? key, this.height = kToolbarHeight,}) : super(key: key);
-  String name = 'Dummy';
-  String lvl = '1';
 
   @override
   Size get preferredSize => Size.fromHeight(height);
@@ -20,12 +17,8 @@ class HomeAppBarView extends StatelessWidget implements PreferredSizeWidget{
   @override
   Widget build(BuildContext context) {
     AuthWrapperViewModel wrapperViewModel = context.watch<AuthWrapperViewModel>();
-    HomeViewModel homeViewModel = context.watch<HomeViewModel>();
+    UserViewModel userViewModel = context.watch<UserViewModel>();
 
-    if(homeViewModel.homeAppBarViewModel != null){
-      name = homeViewModel.homeAppBarViewModel!.name;
-      lvl = homeViewModel.homeAppBarViewModel!.level;
-    }
     final size = MediaQuery.of(context).size;
     final height = size.height;
     final width = size.width;
@@ -52,7 +45,7 @@ class HomeAppBarView extends StatelessWidget implements PreferredSizeWidget{
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'hi, $name',
+                  'hi, ${userViewModel.name}',
                   style: const TextStyle(
                     fontSize: 15.0,
                     color: Color(appBarTitleColor),
@@ -61,7 +54,7 @@ class HomeAppBarView extends StatelessWidget implements PreferredSizeWidget{
                  Padding(
                   padding: const EdgeInsets.only(top: 3.0),
                   child: Text(
-                    'your current level is $lvl',
+                    'your current level is ${userViewModel.level}',
                     style: const TextStyle(
                       fontSize: 12.0,
                       color: Color(appBarSubTitleColor),

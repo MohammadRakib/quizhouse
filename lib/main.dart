@@ -9,6 +9,7 @@ import 'package:quizhouse/viewModels/home/home_view_model.dart';
 import 'package:quizhouse/viewModels/home/runningTournament/running_tournament_view_model.dart';
 import 'package:quizhouse/viewModels/auth/login_view_model.dart';
 import 'package:quizhouse/viewModels/auth/mobile_login_view_model.dart';
+import 'package:quizhouse/viewModels/user/user_view_model.dart';
 import 'package:quizhouse/viewModels/wrapper/auth_wrapper_view_model.dart';
 import 'package:provider/provider.dart';
 import 'package:quizhouse/views/wrapper/main_wrapper.dart';
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<MobileLoginViewModel>(create: (_) => MobileLoginViewModel()),
         ChangeNotifierProvider<MobileRegisterViewModel>(create: (_) => MobileRegisterViewModel()),
         ChangeNotifierProvider<HomeViewModel>(create: (_) => HomeViewModel()),
+        ChangeNotifierProvider<UserViewModel>(create: (_) => UserViewModel()),
         ChangeNotifierProvider<ChallengeRoomViewModel>(create: (_) => ChallengeRoomViewModel()),
         ChangeNotifierProvider<RunningTournamentViewModel>(create: (_) => RunningTournamentViewModel()),
         ChangeNotifierProvider<BcsViewModel>(create: (_) => BcsViewModel()),
