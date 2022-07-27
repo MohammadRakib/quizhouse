@@ -118,7 +118,7 @@ class ChallengeRoomItemsView extends StatelessWidget {
             left: 0,
             right: 0,
             child: Center(
-              child: Text('Players in Online: ${challengeRoomModel.onlinePlayer}',
+              child: Text('Players in Online: 0',
                 style: TextStyle(
                   color: const Color(challengeOnlinePlayerColor),
                   fontSize:  orientation == Orientation.portrait? cardWidthP/41 : cardWidthL/48,
