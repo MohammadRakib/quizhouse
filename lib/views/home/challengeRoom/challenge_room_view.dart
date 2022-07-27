@@ -19,17 +19,7 @@ class ChallengeRoomView extends StatelessWidget {
     final width = size.width;
     final orientation = MediaQuery.of(context).orientation;
 
-    final List<Widget> challengeListSliders = challengeRoomViewModel.items
-        .map((item) => ClipRRect(
-            borderRadius: const BorderRadius.all(Radius.circular(20.0)),
-            child: Stack(
-              children: <Widget>[
-                // Image.network(item, fit: BoxFit.cover, width: orientation == Orientation.portrait? width/1.2 : width/2.5),
-                ChallengeRoomItemsView(challengeRoomModel: item),
-              ],
-            )))
-        .toList();
-
+    final List<Widget> challengeListSliders = challengeRoomViewModel.challengeListSliders;
 
     return Column(
 

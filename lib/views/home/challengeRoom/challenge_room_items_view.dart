@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:quizhouse/core/utils/color.dart';
-import 'package:quizhouse/models/challenge_room_model.dart';
 
 class ChallengeRoomItemsView extends StatelessWidget {
+  String name;
+  String prize;
+  String entryFee;
+  int color;
 
-  ChallengeRoomModel challengeRoomModel;
-
-  ChallengeRoomItemsView({Key? key, required this.challengeRoomModel}) : super(key: key);
+  ChallengeRoomItemsView({Key? key, required this.name, required this.prize, required this.entryFee, required this.color}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,7 @@ class ChallengeRoomItemsView extends StatelessWidget {
     double cardWidthL = width/2.5;
 
     return Container(
-      color: Color(int.parse(challengeRoomModel.color)),
+      color: Color(color),
         width: orientation == Orientation.portrait? cardWidthP : cardWidthL,
       child: Stack(
         fit: StackFit.expand,
@@ -42,7 +43,7 @@ class ChallengeRoomItemsView extends StatelessWidget {
             bottom: orientation == Orientation.portrait? cardWidthP/3 : cardWidthL/3,
             left: 0,
             right: 0,
-            child: Text(challengeRoomModel.name,
+            child: Text(name,
             textAlign: TextAlign.center,
             style: TextStyle(
               color: const Color(challengeNameColor),
@@ -62,13 +63,13 @@ class ChallengeRoomItemsView extends StatelessWidget {
                 margin:  const EdgeInsets.symmetric(horizontal: 15,),
                 decoration: BoxDecoration(
                   borderRadius: const BorderRadius.all(Radius.circular(15.0)),
-                  color: darken(Color(int.parse(challengeRoomModel.color)), .2),
+                  color: darken(Color(color), .2),
                 ),
                 child: Center(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text('Prize: ${challengeRoomModel.prize}',
+                      Text('Prize: $prize',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: const Color(challengePrizeColor),
@@ -96,7 +97,7 @@ class ChallengeRoomItemsView extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text('Entry Fee: ${challengeRoomModel.entryFee}',
+                  Text('Entry Fee: $entryFee',
                     style: TextStyle(
                       color: const Color(challengeEntryFeeColor),
                       fontSize: orientation == Orientation.portrait? cardWidthP/38 : cardWidthL/41,
