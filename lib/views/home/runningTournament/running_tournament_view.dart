@@ -72,8 +72,7 @@ class RunningTournamentView extends StatelessWidget {
           child: ListView.builder(
             itemCount: runningTournamentViewModel.items.length,
             scrollDirection: Axis.horizontal,
-            itemBuilder: (context,index) => RunningTournamentItemView(
-                runningTournamentModel: runningTournamentViewModel.items[index]),
+            itemBuilder: (context,index) => runningTournamentViewModel.runningTournamentItemList[index],
           ),
         ),
       ],

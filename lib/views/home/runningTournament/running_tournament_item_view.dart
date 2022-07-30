@@ -4,9 +4,12 @@ import 'package:quizhouse/models/running_tournament_model.dart';
 
 class RunningTournamentItemView extends StatelessWidget {
 
-  RunningTournamentModel runningTournamentModel;
+  String title;
+  String time;
+  String prize;
+  int color;
 
-  RunningTournamentItemView({Key? key, required this.runningTournamentModel}) : super(key: key);
+  RunningTournamentItemView({Key? key, required this.title, required this.time, required this.prize, required this.color}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,49 +21,13 @@ class RunningTournamentItemView extends StatelessWidget {
     double cardWidthP = width/1.2;
     double cardWidthL = width/2.5;
 
-    // final cardContainerHeight;
-    //
-    // if(width >= 386 && width <= 450){
-    //   cardContainerHeight = 180;
-    // }
-    // else if(width < 386 && width >= 295){
-    //   cardContainerHeight = 150;
-    // }
-    // else if(width < 295){
-    //   cardContainerHeight = 120;
-    // }
-    // else if(width > 450 && width <= 500){
-    //   cardContainerHeight = 200;
-    // }
-    // else if(width > 500 && width <= 564){
-    //   cardContainerHeight = 225;
-    // }
-    // else if(width > 564 && width <= 630){
-    //   cardContainerHeight = 120;
-    // }
-    // else if(width > 630 && width <= 740){
-    //   cardContainerHeight = 130;
-    // }
-    // else if(width > 740 && width <= 820){
-    //   cardContainerHeight = 140;
-    // }
-    // else if(width > 820 && width <= 880){
-    //   cardContainerHeight = 160;
-    // }
-    // else if(width > 880 && width <= 980){
-    //   cardContainerHeight = 170;
-    // }
-    // else{
-    //   cardContainerHeight = 190;
-    // }
-
     return Container(
       width: orientation == Orientation.portrait? cardWidthP : cardWidthL,
       // height: cardContainerHeight,
       // width: 250,
       decoration: BoxDecoration(
         borderRadius: const BorderRadius.all(Radius.circular(15.0)),
-        color: Color(int.parse(runningTournamentModel.color)),
+        color: Color(color),
       ),
       margin: const EdgeInsets.all(8),
       child: Stack(
@@ -75,7 +42,7 @@ class RunningTournamentItemView extends StatelessWidget {
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: const BorderRadius.all(Radius.circular(15.0)),
-                color: darken(Color(int.parse(runningTournamentModel.color)), .1),
+                color: darken(Color(color), .1),
               ),
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 2),
@@ -89,7 +56,7 @@ class RunningTournamentItemView extends StatelessWidget {
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 3),
-                      child: Text('${runningTournamentModel.time} from now',
+                      child: Text('$time remaining',
                       style: TextStyle(
                         fontSize: orientation == Orientation.portrait? cardWidthP/40 : cardWidthL/40,
                         // fontSize: 7,
@@ -109,7 +76,7 @@ class RunningTournamentItemView extends StatelessWidget {
             left: orientation == Orientation.portrait? cardWidthP/20 : cardWidthL/15,
             // top: 40,
             // left: 15,
-            child: Text(runningTournamentModel.title,
+            child: Text(title,
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: const Color(runningTournamentTitleColor),
@@ -152,11 +119,11 @@ class RunningTournamentItemView extends StatelessWidget {
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 4),
-                      child: Text('Win ${runningTournamentModel.prize}',
+                      child: Text('Win $prize',
                         style: TextStyle(
                           fontSize: orientation == Orientation.portrait? cardWidthP/40 : cardWidthL/40,
                           // fontSize: 7,
-                          color: darken(Color(int.parse(runningTournamentModel.color)), .1),
+                          color: darken(Color(color), .1),
                         ),
                       ),
                     ),

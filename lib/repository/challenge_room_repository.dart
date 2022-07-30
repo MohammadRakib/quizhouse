@@ -16,15 +16,8 @@ class ChallengeRoomRepository{
     db.execute(sqlChallengeRoom);
   }
 
-  Future addChallengeRoom() async{
+  Future addChallengeRoom(List<ChallengeRoomModel> challengeList) async{
     final db = await DbRepository().database;
-    final List<ChallengeRoomModel> challengeList = [
-      ChallengeRoomModel(name: 'Sports Quiz', prize: '2000', entryFee: '1000', color: '0xFFBCAAA4'),
-      ChallengeRoomModel(name: 'Movie Quiz', prize: '2000', entryFee: '1000', color: '0XFFFFB74D'),
-      ChallengeRoomModel(name: 'GK Quiz', prize: '2000', entryFee: '1000', color: '0XFF78909C'),
-      ChallengeRoomModel(name: 'IQ Quiz', prize: '2000', entryFee: '1000', color: '0XFF9575CD'),
-      ChallengeRoomModel(name: 'Food Quiz', prize: '1000', entryFee: '500', color: '0XFF5C6BC0'),
-    ];
 
     for(ChallengeRoomModel x in challengeList){
       await db.insert('challengeRoom', x.toMap());
@@ -35,10 +28,18 @@ class ChallengeRoomRepository{
     final db = await DbRepository().database;
     final List<Map<String, dynamic>> maps = await db.query('challengeRoom');
 
+    final List<ChallengeRoomModel> challengeList = [
+      ChallengeRoomModel(name: 'Sports Quiz', prize: '2000', entryFee: '1000', color: '0xFFBCAAA4'),
+      ChallengeRoomModel(name: 'Movie Quiz', prize: '2000', entryFee: '1000', color: '0XFFFFB74D'),
+      ChallengeRoomModel(name: 'GK Quiz', prize: '2000', entryFee: '1000', color: '0XFF78909C'),
+      ChallengeRoomModel(name: 'IQ Quiz', prize: '2000', entryFee: '1000', color: '0XFF9575CD'),
+      ChallengeRoomModel(name: 'Food Quiz', prize: '1000', entryFee: '500', color: '0XFF5C6BC0'),
+    ];
+
     if(maps.isNotEmpty){
       return maps;
     }else{
-      await addChallengeRoom();
+      await addChallengeRoom(challengeList);
       return await loadChallengeRoom();
     }
   }
