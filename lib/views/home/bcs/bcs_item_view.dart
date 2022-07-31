@@ -6,8 +6,11 @@ import '../../../core/utils/color.dart';
 
 class BcsItemView extends StatelessWidget {
 
-  BcsModel bcsModel;
-  BcsItemView({Key? key,required this.bcsModel}) : super(key: key);
+  String title;
+  String questionNumber;
+  String duration;
+  String price;
+  BcsItemView({Key? key,required this.title, required this.questionNumber, required this.duration, required this.price}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +51,7 @@ class BcsItemView extends StatelessWidget {
                   SizedBox(
                     height: orientation == Orientation.portrait? cardWidthP/35 : cardWidthL/45,
                   ),
-                  Text(bcsModel.title,
+                  Text(title,
                     style: TextStyle(
                       fontSize: orientation == Orientation.portrait? cardWidthP/18 : cardWidthL/20,
                     ),
@@ -66,7 +69,7 @@ class BcsItemView extends StatelessWidget {
                       SizedBox(
                         width: orientation == Orientation.portrait? cardWidthP/35 : cardWidthL/45,
                       ),
-                      Text('${bcsModel.questionNumber} questions',
+                      Text('$questionNumber questions',
                        style: TextStyle(
                          fontSize: orientation == Orientation.portrait? cardWidthP/22 : cardWidthL/24,
                        ),
@@ -87,7 +90,7 @@ class BcsItemView extends StatelessWidget {
                       SizedBox(
                         width: orientation == Orientation.portrait? cardWidthP/35 : cardWidthL/45,
                       ),
-                      Text('${bcsModel.duration} minutes',
+                      Text('$duration minutes',
                         style: TextStyle(
                           fontSize: orientation == Orientation.portrait? cardWidthP/22 : cardWidthL/24,
                         ),
@@ -114,7 +117,7 @@ class BcsItemView extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('Play for ${bcsModel.price}',
+              Text('Play for $price',
               style: TextStyle(
                 fontSize: orientation == Orientation.portrait? cardWidthP/22 : cardWidthL/24,
                 color: const Color(bcsPriceColor),

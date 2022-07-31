@@ -19,15 +19,6 @@ class BcsView extends StatelessWidget {
     final width = size.width;
     final orientation = MediaQuery.of(context).orientation;
 
-    final List<Widget> bcsSlider = bcsViewModel.items
-        .map((item) => Stack(
-          children: <Widget>[
-            BcsItemView(bcsModel: item),
-          ],
-        ))
-        .toList();
-
-
     return Column(
 
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -44,7 +35,7 @@ class BcsView extends StatelessWidget {
           const SizedBox(height: 10,),
 
           CarouselSlider(
-            items: bcsSlider,
+            items: bcsViewModel.bcsSlider,
             carouselController: _controller,
             options: CarouselOptions(
                 viewportFraction: orientation == Orientation.portrait?0.6 : 0.4,
