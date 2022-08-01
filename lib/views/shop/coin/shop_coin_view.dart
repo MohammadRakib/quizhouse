@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quizhouse/views/shop/coin/coin_item_view.dart';
 
 class ShopCoinView extends StatelessWidget {
   const ShopCoinView({Key? key}) : super(key: key);
@@ -18,11 +19,7 @@ class ShopCoinView extends StatelessWidget {
           ),
           itemCount: 6,
           itemBuilder: (context, index) {
-            return Container(
-              decoration: BoxDecoration(
-                border: Border.all(width: 3.0),
-              ),
-            );
+            return const CoinItemView();
           },
         )
     );

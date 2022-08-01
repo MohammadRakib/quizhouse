@@ -53,6 +53,10 @@ const bcsPriceColor = 0xFFE57373;
 //shop
 const shopLabelBarColor = Color(0xFF0D47A1);
 const shopLabelColor = Color(0xFFFFFFFF);
+const coinItemBackgroundColor = Color(0xFF448AFF);
+const coinNumberTextColor = Color(0xFFFFFFFF);
+const coinPriceBarColor = Color(0xFF3F51BF);
+const coinPriceColor = Color(0xFFFFFFFF);
 
 
 // darken the color
