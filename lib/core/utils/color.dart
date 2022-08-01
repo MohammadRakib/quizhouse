@@ -50,6 +50,10 @@ const topTopicsItemViewColor = 0xFFFFFFFF;
 const bcsItemViewColor = 0xFFFFFFFF;
 const bcsPriceColor = 0xFFE57373;
 
+//shop
+const shopLabelBarColor = Color(0xFF0D47A1);
+const shopLabelColor = Color(0xFFFFFFFF);
+
 
 // darken the color
 Color darken(Color color, [double amount = .1]) {
