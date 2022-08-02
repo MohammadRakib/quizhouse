@@ -57,6 +57,10 @@ const coinItemBackgroundColor = Color(0xFF448AFF);
 const coinNumberTextColor = Color(0xFFFFFFFF);
 const coinPriceBarColor = Color(0xFF3F51BF);
 const coinPriceColor = Color(0xFFFFFFFF);
+const gemItemBackgroundColor = Color(0xFFFF782F);
+const gemNumberTextColor = Color(0xFFFFFFFF);
+const gemPriceBarColor = Color(0xFFAB2323);
+const gemPriceColor = Color(0xFFFFFFFF);
 
 
 // darken the color

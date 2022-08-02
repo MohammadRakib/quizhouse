@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quizhouse/views/shop/gem/gem_item_view.dart';
 
 class ShopGemView extends StatelessWidget {
   const ShopGemView({Key? key}) : super(key: key);
@@ -18,11 +19,7 @@ class ShopGemView extends StatelessWidget {
           ),
           itemCount: 6,
           itemBuilder: (context, index) {
-            return Container(
-              decoration: BoxDecoration(
-                border: Border.all(width: 3.0),
-              ),
-            );
+            return const GemItemView();
           },
         )
     );
