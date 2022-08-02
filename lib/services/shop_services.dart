@@ -1,5 +1,7 @@
 import 'package:quizhouse/models/shop_item_model.dart';
+import 'package:quizhouse/models/user_model.dart';
 import 'package:quizhouse/repository/shop_repository.dart';
+import 'package:quizhouse/repository/user_repository.dart';
 
 class ShopServices{
   //coin
@@ -17,6 +19,14 @@ class ShopServices{
     return [];
   }
 
+  Future buyCoin(UserModel userModel) async{
+    await UserRepository().updateUser(userModel);
+  }
+
+  Future buyGem(UserModel userModel) async{
+    await UserRepository().updateUser(userModel);
+  }
+
   //gem
   Future<List<ShopItemModel>> getGem() async{
     ShopRepository shopRepository = ShopRepository();
@@ -31,4 +41,5 @@ class ShopServices{
     }
     return [];
   }
+
 }

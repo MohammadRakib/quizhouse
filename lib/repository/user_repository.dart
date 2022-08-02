@@ -51,4 +51,15 @@ class UserRepository{
    return await db.query(sqluser);
  }
 
+
+ //for shop buying
+ Future updateUser(UserModel user) async{
+   final db = await DbRepository().database;
+
+   await db.update('users', user.toMap(),
+     where: 'email = ?',
+     whereArgs: [user.email],
+   );
+ }
+
 }
