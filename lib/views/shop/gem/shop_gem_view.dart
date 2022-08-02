@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:quizhouse/views/shop/gem/gem_item_view.dart';
+import 'package:provider/provider.dart';
+import 'package:quizhouse/viewModels/shop/shop_view_model.dart';
 
 class ShopGemView extends StatelessWidget {
   const ShopGemView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    ShopVIewModel shopVIewModel = context.watch<ShopVIewModel>();
     return Container(
         padding: const EdgeInsets.all(10.0),
         child: GridView.builder(
@@ -17,9 +19,9 @@ class ShopGemView extends StatelessWidget {
             mainAxisSpacing: 10.0,
             crossAxisSpacing: 10.0,
           ),
-          itemCount: 6,
+          itemCount: shopVIewModel.gemItemViewList.length,
           itemBuilder: (context, index) {
-            return const GemItemView();
+            return shopVIewModel.gemItemViewList[index];
           },
         )
     );

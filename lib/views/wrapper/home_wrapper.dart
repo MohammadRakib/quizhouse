@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:quizhouse/core/utils/color.dart';
 import 'package:quizhouse/views/home/home_view.dart';
 import 'package:quizhouse/views/maintenance_view.dart';
-import 'package:provider/provider.dart';
-
-import '../../viewModels/wrapper/auth_wrapper_view_model.dart';
+import 'package:quizhouse/views/shop/shop_view.dart';
 
 class HomeWrapper extends StatefulWidget {
   const HomeWrapper({Key? key}) : super(key: key);
@@ -15,7 +13,7 @@ class HomeWrapper extends StatefulWidget {
 
 class _HomeWrapperState extends State<HomeWrapper> {
 
-  List<Widget> states = [const MaintenanceView(), const MaintenanceView(), const HomeView(), const MaintenanceView(), const MaintenanceView()];
+  List<Widget> states = [const MaintenanceView(), const MaintenanceView(), const HomeView(), const ShopView(), const MaintenanceView()];
   int _state = 2;
 
   @override

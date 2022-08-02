@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:quizhouse/core/utils/color.dart';
 
 class GemItemView extends StatelessWidget {
-  const GemItemView({Key? key}) : super(key: key);
+  String quantity;
+  String price;
+  GemItemView({Key? key, required this.quantity, required this.price}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +28,7 @@ class GemItemView extends StatelessWidget {
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: orientation == Orientation.portrait? 0 : 8),
-                  child: Text('100 gems',
+                  child: Text('$quantity Gems',
                     style: TextStyle(color: gemNumberTextColor,
                       fontSize: orientation == Orientation.portrait? width/38 : width/40,
                     ),
@@ -40,7 +42,7 @@ class GemItemView extends StatelessWidget {
             child: Center(
                 child: Padding(
                   padding: const EdgeInsets.all(5.0),
-                  child: Text('20 BDT',
+                  child: Text(price,
                     style: TextStyle(color: gemPriceColor,
                       fontSize: orientation == Orientation.portrait? width/38 : width/35,
                     ),
