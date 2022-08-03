@@ -1,23 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:quizhouse/views/auth/mobile_login_view.dart';
+import 'package:quizhouse/viewModels/auth/auth_view_model.dart';
 import 'package:quizhouse/views/auth/register_view.dart';
-import 'package:quizhouse/viewModels/auth/login_view_model.dart';
 import 'package:provider/provider.dart';
 import '../../core/sharedWidgets//decoration.dart';
 import '../../core/utils/color.dart';
-import '../../core/utils/padding_margin.dart';
-import '../../viewModels/wrapper/auth_wrapper_view_model.dart';
 
 class LoginView extends StatelessWidget {
   LoginView({Key? key}) : super(key: key);
 
   final _formKey = GlobalKey<FormState>();
+  String email = '';
+  String password = '';
 
   @override
   Widget build(BuildContext context) {
-    AuthWrapperViewModel wrapperViewModel = context.watch<AuthWrapperViewModel>();
-    LoginViewModel loginViewModel = context.watch<LoginViewModel>();
+    AuthViewModel authViewModel = context.watch<AuthViewModel>();
     final size = MediaQuery.of(context).size;
     final height = size.height;
     final width = size.width;
@@ -60,19 +58,19 @@ class LoginView extends StatelessWidget {
                   child: Column(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: paddingForTextFieldH),
+                        padding: const EdgeInsets.symmetric(horizontal: 50),
                         child: TextFormField(
                           decoration: textFieldDecoration.copyWith(label: const Text('Email')),
                           validator: (val) => val!.isEmpty ? 'Please enter email':null,
                           onChanged: (val){
-                            loginViewModel.email = val.trim();
+                            email = val;
                           },
                         ),
                       ),
 
                       const SizedBox(height: 30.0,),
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: paddingForTextFieldH),
+                        padding: const EdgeInsets.symmetric(horizontal: 50),
                         child: TextFormField(
                           decoration: textFieldDecoration.copyWith(label: const Text('Password')),
                           maxLengthEnforcement: MaxLengthEnforcement.enforced,
@@ -80,7 +78,7 @@ class LoginView extends StatelessWidget {
                           obscureText: true,
                           validator: (val) => val!.length < 6 ? 'Password must be minimum 6 character':null ,
                           onChanged: (val){
-                            loginViewModel.password = val.trim();
+                            password = val;
                           },
                         ),
                       ),
@@ -89,7 +87,7 @@ class LoginView extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(right: paddingForTextFieldH),
+                            padding: const EdgeInsets.only(right: 50),
                             child: TextButton(
                                 onPressed: (){
 
@@ -109,7 +107,7 @@ class LoginView extends StatelessWidget {
 
                       const SizedBox(height: 20.0,),
                      Padding(
-                       padding: const EdgeInsets.symmetric(horizontal: paddingForTextFieldH),
+                       padding: const EdgeInsets.symmetric(horizontal: 50),
                        child:  ElevatedButton(
                          style: ButtonStyle(
                            minimumSize: orientation == Orientation.portrait? MaterialStateProperty.all(const Size.fromHeight(40)) : MaterialStateProperty.all(const Size.fromHeight(40)),
@@ -120,10 +118,9 @@ class LoginView extends StatelessWidget {
                          ),
                          onPressed: () async{
                             if(_formKey.currentState!.validate()) {
-                              bool isSignIn = await loginViewModel.onSignIn();
+                              bool isSignIn = await authViewModel.login(email, password);
                               if(isSignIn){
-                                wrapperViewModel.checkIfLogin();
-                                Navigator.pop(context);
+                                authViewModel.checkIfLogin();
                               }else{
                                 SnackBar snackBar = const SnackBar(content: Text('email or password is wrong'),);
                                 ScaffoldMessenger.of(context).showSnackBar(snackBar);
@@ -136,30 +133,7 @@ class LoginView extends StatelessWidget {
                      ),
 
                       const SizedBox(height: 30.0,),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: paddingForTextFieldH),
-                        child:  OutlinedButton(
-                          style: ButtonStyle(
-                            minimumSize: orientation == Orientation.portrait? MaterialStateProperty.all(const Size.fromHeight(40)) : MaterialStateProperty.all(const Size.fromHeight(40)),
-                            overlayColor: MaterialStateProperty.all(const Color(secondaryColor)),
-                            foregroundColor: MaterialStateProperty.all(const Color(primaryColor)),
-                            side: MaterialStateProperty.all(const BorderSide(
-                              color: Color(primaryColor),
-                              width: 1.0,
-                            )),
-                            shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(16.0),
-                            )),
-                          ),
-                          onPressed: (){
-                            Navigator.push(context, MaterialPageRoute<String>(
-                              builder: (BuildContext context) => MobileLoginView(),
-                            ),);
-                          },
-                          child: const Text('Phone Sign In'),
-                        ),
-                      ),
-                      const SizedBox(height: 30.0,),
+
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [

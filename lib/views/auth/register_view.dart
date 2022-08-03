@@ -1,16 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:quizhouse/viewModels/auth/register_view_model.dart';
-import 'package:quizhouse/views/auth/login_view.dart';
+import 'package:quizhouse/viewModels/auth/auth_view_model.dart';
 import 'package:provider/provider.dart';
-
-
 import '../../core/sharedWidgets/decoration.dart';
 import '../../core/utils/color.dart';
-import '../../core/utils/on_tap.dart';
-import '../../core/utils/padding_margin.dart';
-import '../../viewModels/auth/login_view_model.dart';
-import '../../viewModels/wrapper/auth_wrapper_view_model.dart';
 
 class RegisterView extends StatelessWidget {
   RegisterView({Key? key}) : super(key: key);
@@ -18,13 +11,13 @@ class RegisterView extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
   String email = '';
   String password = '';
+  String confirmPassword = '';
   String errorMessage = '';
   String name = '';
 
   @override
   Widget build(BuildContext context) {
-    AuthWrapperViewModel wrapperViewModel = context.watch<AuthWrapperViewModel>();
-    RegisterViewModel registerViewModel = context.watch<RegisterViewModel>();
+    AuthViewModel authViewModel = context.watch<AuthViewModel>();
     final size = MediaQuery.of(context).size;
     final height = size.height;
     final width = size.width;
@@ -66,31 +59,31 @@ class RegisterView extends StatelessWidget {
 
                       const SizedBox(height: 35.0,),
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: paddingForTextFieldH),
+                        padding: const EdgeInsets.symmetric(horizontal: 50),
                         child: TextFormField(
                           decoration: textFieldDecoration.copyWith(label: const Text('Name')),
                           validator: (val) => val!.isEmpty ? 'Please enter your name':null,
                           onChanged: (val){
-                            registerViewModel.name = val.trim();
+                            name = val;
                           },
                         ),
                       ),
 
                       const SizedBox(height: 10.0,),
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: paddingForTextFieldH),
+                        padding: const EdgeInsets.symmetric(horizontal: 50),
                         child: TextFormField(
                           decoration: textFieldDecoration.copyWith(label: const Text('Email')),
                           validator: (val) => val!.isEmpty ? 'Please enter email':null,
                           onChanged: (val){
-                            registerViewModel.email = val.trim();
+                            email = val;
                           },
                         ),
                       ),
 
                       const SizedBox(height: 10.0,),
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: paddingForTextFieldH),
+                        padding: const EdgeInsets.symmetric(horizontal: 50),
                         child: TextFormField(
                           decoration: textFieldDecoration.copyWith(label: const Text('Password')),
                           maxLengthEnforcement: MaxLengthEnforcement.enforced,
@@ -98,29 +91,29 @@ class RegisterView extends StatelessWidget {
                           obscureText: true,
                           validator: (val) => val!.length < 6 ? 'Password must be minimum 6 character':null ,
                           onChanged: (val){
-                            registerViewModel.password = val.trim();
+                            password = val;
                           },
                         ),
                       ),
 
                       const SizedBox(height: 10.0,),
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: paddingForTextFieldH),
+                        padding: const EdgeInsets.symmetric(horizontal: 50),
                         child: TextFormField(
                           decoration: textFieldDecoration.copyWith(label: const Text('Confirm Password')),
                           maxLengthEnforcement: MaxLengthEnforcement.enforced,
                           maxLength: 6,
                           obscureText: true,
-                          validator: (val) => val != registerViewModel.password ? 'Please enter correct password':null ,
+                          validator: (val) => val != password ? 'Please enter correct password':null ,
                           onChanged: (val){
-                            registerViewModel.confirmPassword = val.trim();
+                            confirmPassword = val;
                           },
                         ),
                       ),
 
                       const SizedBox(height: 20.0,),
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: paddingForTextFieldH),
+                        padding: const EdgeInsets.symmetric(horizontal: 50),
                         child:  ElevatedButton(
                           style: ButtonStyle(
                             minimumSize: orientation == Orientation.portrait? MaterialStateProperty.all(const Size.fromHeight(40)) : MaterialStateProperty.all(const Size.fromHeight(40)),
@@ -131,10 +124,9 @@ class RegisterView extends StatelessWidget {
                           ),
                           onPressed: ()async{
                             if(_formKey.currentState!.validate()){
-                              bool isSuccess = await registerViewModel.onRegister();
+                              bool isSuccess = await authViewModel.register(name, email, password, true);
                               if(isSuccess){
-                                wrapperViewModel.checkIfLogin();
-                                Navigator.pop(context);
+                                authViewModel.checkIfLogin();
                                 Navigator.pop(context);
                               }else{
                                 SnackBar snackBar = const SnackBar(content: Text('user already exist'),);

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:quizhouse/core/utils/color.dart';
 import 'package:provider/provider.dart';
+import 'package:quizhouse/viewModels/auth/auth_view_model.dart';
 import 'package:quizhouse/viewModels/user/user_view_model.dart';
-
+import 'package:quizhouse/views/shop/shop_view.dart';
 import '../../services/user_services.dart';
-import '../../viewModels/wrapper/auth_wrapper_view_model.dart';
 
 class HomeAppBarView extends StatelessWidget implements PreferredSizeWidget{
 
@@ -16,7 +16,7 @@ class HomeAppBarView extends StatelessWidget implements PreferredSizeWidget{
 
   @override
   Widget build(BuildContext context) {
-    AuthWrapperViewModel wrapperViewModel = context.watch<AuthWrapperViewModel>();
+    AuthViewModel authViewModel = context.watch<AuthViewModel>();
     UserViewModel userViewModel = context.watch<UserViewModel>();
 
     final size = MediaQuery.of(context).size;
@@ -70,14 +70,27 @@ class HomeAppBarView extends StatelessWidget implements PreferredSizeWidget{
             right: 1,
               child: IconButton(
                   onPressed: () async{
-                    if(await UserServices().logout()){
-                     wrapperViewModel.checkIfLogin();
+                    if(await authViewModel.logOut()){
+                     authViewModel.checkIfLogin();
                     }
                   },
                   icon: const Icon(Icons.logout_rounded,
                     color: Color(primaryColor),
                   ),
               ),
+          ),
+
+          Positioned(
+            top: 8,
+            right: 35,
+            child: IconButton(
+              onPressed: () async{
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const ShopView()));
+              },
+              icon: const Icon(Icons.shopping_basket_outlined,
+                color: Color(primaryColor),
+              ),
+            ),
           ),
 
         ],
