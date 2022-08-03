@@ -71,7 +71,7 @@ class RegisterView extends StatelessWidget {
                           decoration: textFieldDecoration.copyWith(label: const Text('Name')),
                           validator: (val) => val!.isEmpty ? 'Please enter your name':null,
                           onChanged: (val){
-                            registerViewModel.name = val;
+                            registerViewModel.name = val.trim();
                           },
                         ),
                       ),
@@ -83,7 +83,7 @@ class RegisterView extends StatelessWidget {
                           decoration: textFieldDecoration.copyWith(label: const Text('Email')),
                           validator: (val) => val!.isEmpty ? 'Please enter email':null,
                           onChanged: (val){
-                            registerViewModel.email = val;
+                            registerViewModel.email = val.trim();
                           },
                         ),
                       ),
@@ -98,7 +98,7 @@ class RegisterView extends StatelessWidget {
                           obscureText: true,
                           validator: (val) => val!.length < 6 ? 'Password must be minimum 6 character':null ,
                           onChanged: (val){
-                            registerViewModel.password = val;
+                            registerViewModel.password = val.trim();
                           },
                         ),
                       ),
@@ -113,7 +113,7 @@ class RegisterView extends StatelessWidget {
                           obscureText: true,
                           validator: (val) => val != registerViewModel.password ? 'Please enter correct password':null ,
                           onChanged: (val){
-                            registerViewModel.confirmPassword = val;
+                            registerViewModel.confirmPassword = val.trim();
                           },
                         ),
                       ),
@@ -129,8 +129,18 @@ class RegisterView extends StatelessWidget {
                               borderRadius: BorderRadius.circular(16.0),
                             )),
                           ),
-                          onPressed: (){
-                            registerViewModel.onRegister(_formKey, wrapperViewModel, context);
+                          onPressed: ()async{
+                            if(_formKey.currentState!.validate()){
+                              bool isSuccess = await registerViewModel.onRegister();
+                              if(isSuccess){
+                                wrapperViewModel.checkIfLogin();
+                                Navigator.pop(context);
+                                Navigator.pop(context);
+                              }else{
+                                SnackBar snackBar = const SnackBar(content: Text('user already exist'),);
+                                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                              }
+                            }
                           },
                           child: const Text('Sign Up'),
                         ),

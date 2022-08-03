@@ -27,22 +27,8 @@ class LoginViewModel extends ChangeNotifier{
     return  await UserServices().login(email,password);
   }
 
-  Future onSignIn(GlobalKey<FormState> formKey, AuthWrapperViewModel wrapperViewModel, BuildContext context)async{
-
-    if(formKey.currentState!.validate()) {
-
-      String email = this.email.trim();
-      String password = this.password.trim();
-      bool loginSuccess = await login(email, password);
-      if(loginSuccess){
-        wrapperViewModel.isLogin = true;
-        wrapperViewModel.stateChange();
-        Navigator.pop(context);
-      }else{
-        SnackBar snackBar = const SnackBar(content: Text('email or password is wrong'),);
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
-      }
-    }
+  Future<bool> onSignIn()async{
+    return await login(email, password);
   }
 
 

@@ -11,21 +11,6 @@ class MainWrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AuthWrapperViewModel wrapperViewModel = context.watch<AuthWrapperViewModel>();
-    return FutureBuilder<bool>(
-        future: wrapperViewModel.checkIfLogin(),
-        builder: (context,snapshots){
-          if(snapshots.hasData){
-            bool? isLogin = snapshots.data;
-            if(isLogin != null && isLogin){
-              wrapperViewModel.isLogin = true;
-              return const AuthWrapper();
-            }else{
-              wrapperViewModel.isLogin = false;
-              return const AuthWrapper();
-            }
-          }else{
-            return const Loading();
-          }
-        });
+    return wrapperViewModel.loading? Loading() : AuthWrapper();
   }
 }

@@ -71,8 +71,7 @@ class HomeAppBarView extends StatelessWidget implements PreferredSizeWidget{
               child: IconButton(
                   onPressed: () async{
                     if(await UserServices().logout()){
-                      wrapperViewModel.isLogin = false;
-                      wrapperViewModel.stateChange();
+                     wrapperViewModel.checkIfLogin();
                     }
                   },
                   icon: const Icon(Icons.logout_rounded,

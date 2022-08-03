@@ -7,24 +7,34 @@ import '../../models/user_model.dart';
 class AuthWrapperViewModel extends ChangeNotifier{
 
   bool _isLogin = false;
+  bool _loading = true;
+
+
+  bool get loading => _loading;
+
+  set loading(bool value) {
+    _loading = value;
+  }
 
   bool get isLogin => _isLogin;
 
   set isLogin(bool value) {
     _isLogin = value;
-  }
-
-  void stateChange(){
+    loading = false;
     notifyListeners();
   }
 
+  AuthWrapperViewModel(){
+    checkIfLogin();
+  }
+
   //Check if login
-Future<bool> checkIfLogin()async{
+Future checkIfLogin()async{
   UserModel? currentUser = await UserServices().getCurrentUser();
   if(currentUser != null){
-    return true;
+    isLogin = true;
   }else{
-    return false;
+    isLogin = false;
   }
 }
 

@@ -42,20 +42,8 @@ class RegisterViewModel extends ChangeNotifier{
   }
 
 
-  Future onRegister(GlobalKey<FormState> formKey, AuthWrapperViewModel wrapperViewModel, BuildContext context) async{
-
-    if(formKey.currentState!.validate()){
-      final registerSuccess = await register(true);
-      if(registerSuccess){
-        wrapperViewModel.isLogin = true;
-        wrapperViewModel.stateChange();
-        Navigator.pop(context);
-        Navigator.pop(context);
-      }else{
-        SnackBar snackBar = const SnackBar(content: Text('user already exist'),);
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
-      }
-    }
+  Future<bool> onRegister() async{
+    return await register(true);
   }
 
 }

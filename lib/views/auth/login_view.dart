@@ -13,9 +13,6 @@ class LoginView extends StatelessWidget {
   LoginView({Key? key}) : super(key: key);
 
   final _formKey = GlobalKey<FormState>();
-  String email = '';
-  String password = '';
-  String errorMessage = '';
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +65,7 @@ class LoginView extends StatelessWidget {
                           decoration: textFieldDecoration.copyWith(label: const Text('Email')),
                           validator: (val) => val!.isEmpty ? 'Please enter email':null,
                           onChanged: (val){
-                            loginViewModel.email = val;
+                            loginViewModel.email = val.trim();
                           },
                         ),
                       ),
@@ -83,7 +80,7 @@ class LoginView extends StatelessWidget {
                           obscureText: true,
                           validator: (val) => val!.length < 6 ? 'Password must be minimum 6 character':null ,
                           onChanged: (val){
-                            loginViewModel.password = val;
+                            loginViewModel.password = val.trim();
                           },
                         ),
                       ),
@@ -121,8 +118,18 @@ class LoginView extends StatelessWidget {
                              borderRadius: BorderRadius.circular(16.0),
                            )),
                          ),
-                         onPressed: (){
-                           loginViewModel.onSignIn(_formKey, wrapperViewModel, context);
+                         onPressed: () async{
+                            if(_formKey.currentState!.validate()) {
+                              bool isSignIn = await loginViewModel.onSignIn();
+                              if(isSignIn){
+                                wrapperViewModel.checkIfLogin();
+                                Navigator.pop(context);
+                              }else{
+                                SnackBar snackBar = const SnackBar(content: Text('email or password is wrong'),);
+                                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                              }
+                            }
+
                          },
                          child: const Text('Sign In'),
                        ),
