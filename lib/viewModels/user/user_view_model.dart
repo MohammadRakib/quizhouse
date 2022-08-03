@@ -29,6 +29,7 @@ class UserViewModel extends ChangeNotifier{
 
   set gems(dynamic value) {
     _gems = value;
+    notifyListeners();
   }
 
   dynamic get coin => _coin;
@@ -54,6 +55,6 @@ class UserViewModel extends ChangeNotifier{
     this.levelPercentage = levelPercentage;
     this.coin = coin;
     this.gems = gems;
-    notifyListeners();
   }
+
 }

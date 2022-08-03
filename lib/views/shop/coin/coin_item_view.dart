@@ -13,6 +13,7 @@ class CoinItemView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ShopVIewModel shopVIewModel = context.watch<ShopVIewModel>();
+    UserViewModel userViewModel = context.watch<UserViewModel>();
     final size = MediaQuery.of(context).size;
     final height = size.height;
     final width = size.width;
@@ -40,6 +41,7 @@ class CoinItemView extends StatelessWidget {
                     shopVIewModel.loading = true;
                     await shopVIewModel.onTapCoin(quantity, price);
                     shopVIewModel.loading = false;
+                    userViewModel.getCurrentUser(); // it is gonna update user information visually
                   },
                 ),
               ],

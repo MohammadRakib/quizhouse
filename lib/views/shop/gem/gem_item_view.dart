@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:quizhouse/core/sharedWidgets/Loading.dart';
 import 'package:quizhouse/core/utils/color.dart';
 import 'package:quizhouse/viewModels/shop/shop_view_model.dart';
+import 'package:quizhouse/viewModels/user/user_view_model.dart';
 
 class GemItemView extends StatelessWidget {
   String quantity;
@@ -12,6 +13,7 @@ class GemItemView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ShopVIewModel shopVIewModel = context.watch<ShopVIewModel>();
+    UserViewModel userViewModel = context.watch<UserViewModel>();
     final size = MediaQuery.of(context).size;
     final height = size.height;
     final width = size.width;
@@ -39,6 +41,7 @@ class GemItemView extends StatelessWidget {
                     shopVIewModel.loading = true;
                     await shopVIewModel.onTapGem(quantity, price);
                     shopVIewModel.loading = false;
+                    userViewModel.getCurrentUser(); // it is gonna update user information visually
                   },
                 ),
               ],

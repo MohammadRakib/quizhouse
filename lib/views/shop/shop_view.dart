@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:quizhouse/core/utils/color.dart';
 import 'package:quizhouse/views/shop/coin/shop_coin_view.dart';
 import 'package:quizhouse/views/shop/gem/shop_gem_view.dart';
+import 'package:quizhouse/views/shop/shop_player_status.dart';
 
 class ShopView extends StatelessWidget {
   const ShopView({Key? key}) : super(key: key);
@@ -43,13 +44,7 @@ class ShopView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Shop',
-          style: TextStyle(color: Color(appBarTitleColor)),
-        ),
-        centerTitle: true,
-        backgroundColor: const Color(appBarColor),
-      ),
+      appBar: const ShopPlayerStatus(),
       body: ListView.builder(
           itemCount: 4,
           itemBuilder: (context,index) => listItem(index)
