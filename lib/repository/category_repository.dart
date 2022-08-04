@@ -9,20 +9,19 @@ class CategoryRepository{
     String id = 'id INTEGER PRIMARY KEY AUTOINCREMENT';
     String name = 'name TEXT NOT NULL';
     String imageUri = 'imageUri TEXT NOT NULL';
-    String completion = 'completion TEXT NOT NULL';
 
-    String sqlCategory = 'CREATE TABLE IF NOT EXISTS category($id, $name, $imageUri, $completion)';
+    String sqlCategory = 'CREATE TABLE IF NOT EXISTS category($id, $name, $imageUri)';
     db.execute(sqlCategory);
   }
 
   Future addCategory() async{
     final db = await DbRepository().database;
     final List<CategoryModel> categoryList = [
-      CategoryModel(name: "Bangladesh", imageUri: "lib/assets/logo/category/bangladesh.png", completion: '0'),
-      CategoryModel(name: "World", imageUri: "lib/assets/logo/category/world.png", completion: '0'),
-      CategoryModel(name: "Cricket", imageUri: "lib/assets/logo/category/cricket.jpg", completion: '0'),
-      CategoryModel(name: "Soccer", imageUri: "lib/assets/logo/category/soccer.jpg", completion: '0'),
-      CategoryModel(name: "Animal", imageUri: "lib/assets/logo/category/animal.png", completion: '0'),
+      CategoryModel(name: "Bangladesh", imageUri: "lib/assets/logo/category/bangladesh.png"),
+      CategoryModel(name: "World", imageUri: "lib/assets/logo/category/world.png"),
+      CategoryModel(name: "Cricket", imageUri: "lib/assets/logo/category/cricket.jpg"),
+      CategoryModel(name: "Soccer", imageUri: "lib/assets/logo/category/soccer.jpg"),
+      CategoryModel(name: "Animal", imageUri: "lib/assets/logo/category/animal.png"),
     ];
 
     for(CategoryModel x in categoryList){

@@ -1,21 +1,20 @@
 class CategoryModel{
 
+  int id;
   String name;
   String imageUri;
-  String completion;
 
-  CategoryModel({required this.name,required this.imageUri,required this.completion});
+  CategoryModel({this.id = 0, required this.name,required this.imageUri});
 
   Map<String, dynamic> toMap() {
     return {
       'name': name,
       'imageUri': imageUri,
-      'completion': completion,
     };
   }
 
   @override
   String toString() {
-    return 'CategoryModel{name: $name, imageUri: $imageUri, completion: $completion}';
+    return 'CategoryModel{name: $name, imageUri: $imageUri}';
   }
 }

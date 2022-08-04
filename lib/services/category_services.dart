@@ -9,7 +9,7 @@ class CategoryServices{
     List<Map<String, dynamic>> maps = await categoryRepository.loadCategory();
     if(maps.isNotEmpty){
       final categoryList = List.generate(maps.length, (i) {
-        return CategoryModel(name: maps[i]['name'], imageUri: maps[i]['imageUri'], completion: maps[i]['completion']
+        return CategoryModel(id: maps[i]['id'], name: maps[i]['name'], imageUri: maps[i]['imageUri']
         );
       });
       return categoryList;

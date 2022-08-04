@@ -1,6 +1,6 @@
 // import 'package:flutter/material.dart';
-// import 'package:gblquiz/models/play_model.dart';
-// import 'package:gblquiz/viewModels/play/play_view_model.dart';
+// import 'package:gblquiz/models/question_model.dart';
+// import 'package:gblquiz/viewModels/play/question_view_model.dart';
 // import 'package:percent_indicator/linear_percent_indicator.dart';
 // import 'package:provider/provider.dart';
 //

@@ -25,7 +25,7 @@ class CategoryViewModel extends ChangeNotifier{
 
   List<CategoryItemView> generatingCategoryItemList(){
     return List.generate(_items.length, (index) =>
-     CategoryItemView(name: _items[index].name, imageUri: _items[index].imageUri, completion: _items[index].completion)
+     CategoryItemView(name: _items[index].name, imageUri: _items[index].imageUri, categoryId: _items[index].id,)
     );
   }
 }
