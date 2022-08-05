@@ -20,68 +20,86 @@ class ShopPlayerStatus extends StatelessWidget implements PreferredSizeWidget{
       child: Container(
         color: const Color(appBarColor),
         padding: const EdgeInsets.symmetric(vertical: 10),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
+        child: Stack(
+          fit: StackFit.expand,
           children: [
-            Container(
-              margin: const EdgeInsets.symmetric(vertical: 2),
-              height: orientation == Orientation.portrait? height/32 : height/19,
-              padding: const EdgeInsets.symmetric(horizontal: 3),
-              decoration: BoxDecoration(
-                borderRadius: const BorderRadius.all(Radius.circular(15.0)),
-                border: Border.all(
-                  color: const Color(primaryColor),
-                  width: 1,
+            Positioned(
+                top: 0,
+                bottom: 0,
+                left: 3,
+                child: GestureDetector(
+                    onTap: (){
+                      Navigator.pop(context);
+                    },
+                    child: const Icon(Icons.arrow_back_ios_new_rounded))
+            ),
+            Positioned(
+              top: 0,
+              bottom: 0,
+              right: 70,
+              child: Container(
+                margin: const EdgeInsets.symmetric(vertical: 2),
+                height: orientation == Orientation.portrait? height/32 : height/19,
+                padding: const EdgeInsets.symmetric(horizontal: 3),
+                decoration: BoxDecoration(
+                  borderRadius: const BorderRadius.all(Radius.circular(15.0)),
+                  border: Border.all(
+                    color: const Color(primaryColor),
+                    width: 1,
+                  ),
+                  color: const Color(playerStatusGoldCoinColor),
                 ),
-                color: const Color(playerStatusGoldCoinColor),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Image.asset('lib/assets/icons/coin.png',
-                    width: orientation == Orientation.portrait? width/30 : width/32,
-                    height: orientation == Orientation.portrait? height/30 : height/32,
-                  ),
-                  const SizedBox(width: 3,),
-                  Text(userViewModel.coin,
-                    style: TextStyle(
-                      fontSize: orientation == Orientation.portrait? height/100 : width/110,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Image.asset('lib/assets/icons/coin.png',
+                      width: orientation == Orientation.portrait? width/30 : width/32,
+                      height: orientation == Orientation.portrait? height/30 : height/32,
                     ),
-                  ),
-                  const SizedBox(width: 4,),
-                ],
+                    const SizedBox(width: 3,),
+                    Text(userViewModel.coin,
+                      style: TextStyle(
+                        fontSize: orientation == Orientation.portrait? height/100 : width/110,
+                      ),
+                    ),
+                    const SizedBox(width: 4,),
+                  ],
+                ),
               ),
             ),
 
-            const SizedBox(width: 5,),
-
-            Container(
-              margin: const EdgeInsets.symmetric(vertical: 2),
-              height: orientation == Orientation.portrait? height/32 : height/19,
-              padding: const EdgeInsets.symmetric(horizontal: 3),
-              decoration: BoxDecoration(
-                borderRadius: const BorderRadius.all(Radius.circular(15.0)),
-                border: Border.all(
-                  color: const Color(primaryColor),
-                  width: 1,
+            Positioned(
+              top: 0,
+              bottom: 0,
+              right: 10,
+              child: Container(
+                margin: const EdgeInsets.symmetric(vertical: 2),
+                height: orientation == Orientation.portrait? height/32 : height/19,
+                padding: const EdgeInsets.symmetric(horizontal: 3),
+                decoration: BoxDecoration(
+                  borderRadius: const BorderRadius.all(Radius.circular(15.0)),
+                  border: Border.all(
+                    color: const Color(primaryColor),
+                    width: 1,
+                  ),
+                  color: const Color(playerStatusGoldCoinColor),
                 ),
-                color: const Color(playerStatusGoldCoinColor),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Image.asset('lib/assets/icons/diamond.png',
-                    width: orientation == Orientation.portrait? width/30 : width/32,
-                    height: orientation == Orientation.portrait? height/30 : height/32,
-                  ),
-                  const SizedBox(width: 3,),
-                  Text(userViewModel.gems,
-                    style: TextStyle(
-                      fontSize: orientation == Orientation.portrait? height/100 : width/110,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Image.asset('lib/assets/icons/diamond.png',
+                      width: orientation == Orientation.portrait? width/30 : width/32,
+                      height: orientation == Orientation.portrait? height/30 : height/32,
                     ),
-                  ),
-                  const SizedBox(width: 4,),
-                ],
+                    const SizedBox(width: 3,),
+                    Text(userViewModel.gems,
+                      style: TextStyle(
+                        fontSize: orientation == Orientation.portrait? height/100 : width/110,
+                      ),
+                    ),
+                    const SizedBox(width: 4,),
+                  ],
+                ),
               ),
             ),
 

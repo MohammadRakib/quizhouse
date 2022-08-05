@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:quizhouse/core/utils/color.dart';
+import 'package:quizhouse/viewModels/user/user_view_model.dart';
 import 'package:quizhouse/views/play/play_view_wrapper.dart';
 
 class ChallengeRoomItemsView extends StatelessWidget {
@@ -12,7 +14,7 @@ class ChallengeRoomItemsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
+    UserViewModel userViewModel = context.watch<UserViewModel>();
     final size = MediaQuery.of(context).size;
     final height = size.height;
     final width = size.width;
@@ -22,9 +24,34 @@ class ChallengeRoomItemsView extends StatelessWidget {
 
     return InkWell(
       onTap: (){
-        Navigator.push(context, MaterialPageRoute<String>(
-          builder: (BuildContext context) => PlayViewWrapper(title: name, categoryId: 0, playType: 'challenge room',),
-        ),);
+
+        showDialog<void>(
+          context: context,
+          barrierDismissible: false, // user must tap button!
+          builder: (BuildContext context) {
+            return AlertDialog(
+              content: Text('Do you want to challenge for $entryFee coin?'),
+              actions: <Widget>[
+                TextButton(
+                  child: const Text('No'),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+                TextButton(
+                  child: const Text('Yes'),
+                  onPressed: () async{
+                    userViewModel.spendCoins(entryFee);
+                    Navigator.of(context).pop();
+                    Navigator.push(context, MaterialPageRoute<String>(
+                      builder: (BuildContext context) => PlayViewWrapper(title: name, categoryId: 0, playType: 'challenge room',),
+                    ),);
+                  },
+                ),
+              ],
+            );
+          },
+        );
       },
       child: Container(
         color: Color(color),

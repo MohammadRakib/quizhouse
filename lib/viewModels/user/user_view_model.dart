@@ -62,4 +62,12 @@ class UserViewModel extends ChangeNotifier{
     getCurrentUser(); // update all value of the user in the view
   }
 
+  // spend coins
+  Future spendCoins(String amount)async{
+    UserModel? userModel = await UserServices().getCurrentUser();
+    userModel!.coin = userModel.coin - int.parse(amount);
+    await UserServices().spendCoin(userModel);
+    getCurrentUser(); // update all value of the user in the view
+  }
+
 }

@@ -28,10 +28,10 @@ class BcsRepository{
     final List<Map<String, dynamic>> maps = await db.query('BCS');
 
     final List<BcsModel> bcsList = [
-      BcsModel(title: 'BCS Model Test 1', questionNumber: '50', duration: '30',price: '10 Taka'),
-      BcsModel(title: 'BCS Model Test 2', questionNumber: '50', duration: '30',price: '10 Taka'),
-      BcsModel(title: 'BCS Model Test 3', questionNumber: '50', duration: '30',price: '10 Taka'),
-      BcsModel(title: 'BCS Model Test 4', questionNumber: '50', duration: '30',price: '10 Taka'),
+      BcsModel(title: 'BCS Model Test 1', questionNumber: '5', duration: '1',price: '10'),
+      BcsModel(title: 'BCS Model Test 2', questionNumber: '5', duration: '1',price: '10'),
+      BcsModel(title: 'BCS Model Test 3', questionNumber: '5', duration: '1',price: '10'),
+      BcsModel(title: 'BCS Model Test 4', questionNumber: '5', duration: '1',price: '10'),
     ];
 
     if(maps.isNotEmpty){

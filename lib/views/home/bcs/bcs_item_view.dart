@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:quizhouse/models/bcs_model.dart';
+import 'package:quizhouse/viewModels/user/user_view_model.dart';
 import 'package:quizhouse/views/play/play_view_wrapper.dart';
 
 import '../../../core/utils/color.dart';
@@ -15,7 +17,7 @@ class BcsItemView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
+    UserViewModel userViewModel = context.watch<UserViewModel>();
     final size = MediaQuery.of(context).size;
     final height = size.height;
     final width = size.width;
@@ -23,12 +25,35 @@ class BcsItemView extends StatelessWidget {
     double cardWidthP = width/1.8;
     double cardWidthL = width/2.5;
 
-
     return InkWell(
       onTap: (){
-        Navigator.push(context, MaterialPageRoute<String>(
-          builder: (BuildContext context) => PlayViewWrapper(title: title, categoryId: 0, playType: 'BCS',),
-        ),);
+        showDialog<void>(
+          context: context,
+          barrierDismissible: false, // user must tap button!
+          builder: (BuildContext context) {
+            return AlertDialog(
+              content: Text('Do you want to test for $price coin?'),
+              actions: <Widget>[
+                TextButton(
+                  child: const Text('No'),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+                TextButton(
+                  child: const Text('Yes'),
+                  onPressed: () async{
+                    userViewModel.spendCoins(price);
+                    Navigator.of(context).pop();
+                    Navigator.push(context, MaterialPageRoute<String>(
+                      builder: (BuildContext context) => PlayViewWrapper(title: title, categoryId: 0, playType: 'BCS',),
+                    ),);
+                  },
+                ),
+              ],
+            );
+          },
+        );
       },
       child: Container(
         decoration: const BoxDecoration(
@@ -124,7 +149,7 @@ class BcsItemView extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('Play for $price',
+                Text('Play for $price coin',
                 style: TextStyle(
                   fontSize: orientation == Orientation.portrait? cardWidthP/22 : cardWidthL/24,
                   color: const Color(bcsPriceColor),

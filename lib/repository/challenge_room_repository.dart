@@ -29,11 +29,11 @@ class ChallengeRoomRepository{
     final List<Map<String, dynamic>> maps = await db.query('challengeRoom');
 
     final List<ChallengeRoomModel> challengeList = [
-      ChallengeRoomModel(name: 'Sports Quiz', prize: '2000', entryFee: '1000', color: '0xFFBCAAA4'),
-      ChallengeRoomModel(name: 'Movie Quiz', prize: '2000', entryFee: '1000', color: '0XFFFFB74D'),
-      ChallengeRoomModel(name: 'GK Quiz', prize: '2000', entryFee: '1000', color: '0XFF78909C'),
-      ChallengeRoomModel(name: 'IQ Quiz', prize: '2000', entryFee: '1000', color: '0XFF9575CD'),
-      ChallengeRoomModel(name: 'Food Quiz', prize: '1000', entryFee: '500', color: '0XFF5C6BC0'),
+      ChallengeRoomModel(name: 'Challenge 1', prize: '2000', entryFee: '1000', color: '0xFFBCAAA4'),
+      ChallengeRoomModel(name: 'Challenge 2', prize: '2000', entryFee: '1000', color: '0XFFFFB74D'),
+      ChallengeRoomModel(name: 'Challenge 3', prize: '2000', entryFee: '1000', color: '0XFF78909C'),
+      ChallengeRoomModel(name: 'Challenge 4', prize: '2000', entryFee: '1000', color: '0XFF9575CD'),
+      ChallengeRoomModel(name: 'Challenge 5', prize: '1000', entryFee: '500', color: '0XFF5C6BC0'),
     ];
 
     if(maps.isNotEmpty){

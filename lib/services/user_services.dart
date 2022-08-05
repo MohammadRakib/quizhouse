@@ -110,4 +110,8 @@ class UserServices{
     await userRepository.updateUser(userModel);
   }
 
+  // spend coin
+  Future spendCoin(UserModel userModel)async{
+    await UserRepository().updateUser(userModel);
+  }
 }
