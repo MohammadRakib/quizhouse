@@ -38,12 +38,10 @@ class QuestionViewModel extends ChangeNotifier{
     notifyListeners();
   }
 
-
  List<QuestionModel> get items => _items;
 
   set items(List<QuestionModel> value) {
     _items = value;
-    notifyListeners();
   }
 
   get optionBorderColor2 => _optionBorderColor2;
@@ -85,8 +83,18 @@ class QuestionViewModel extends ChangeNotifier{
   }
 
   Future getQuestionByCategory(int categoryId) async{
-    items = await QuestionServices().getQuestionByCategory(categoryId);
+    if(items.isEmpty){
+      items = await QuestionServices().getQuestionByCategory(categoryId);
+      notifyListeners();
+    }
   }
+
+ Future getQuestionByRandom() async{
+   if(items.isEmpty){
+     items = await QuestionServices().getQuestionByRandom();
+     notifyListeners();
+   }
+ }
 
   void changeState(){
     notifyListeners();

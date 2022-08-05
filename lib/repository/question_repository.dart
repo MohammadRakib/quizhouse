@@ -121,4 +121,9 @@ class QuestionRepository{
     final db = await DbRepository().database;
     return await db.rawQuery('select * from question where categoryId == ${categoryId.toString()}');
   }
+
+  Future<List<Map<String, dynamic>>> loadQuestionByRandom() async{
+    final db = await DbRepository().database;
+    return await db.rawQuery('select * from question ORDER BY RANDOM() LIMIT 5');
+  }
 }

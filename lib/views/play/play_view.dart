@@ -19,6 +19,8 @@ class PlayView extends StatelessWidget {
   void selectPlayType(QuestionViewModel questionViewModel){
     if(playType == 'category'){
       questionViewModel.getQuestionByCategory(categoryId);
+    }else{
+      questionViewModel.getQuestionByRandom();
     }
   }
 
@@ -80,6 +82,7 @@ class PlayView extends StatelessWidget {
               onPressed: (){
                 Navigator.of(context).pop();
                 questionViewModel.questionIndex = 0;
+                questionViewModel.items = [];
                 Navigator.of(context).pop();
               },
             ),
@@ -273,6 +276,7 @@ class PlayView extends StatelessWidget {
                         questionViewModel.changeState();
                       }else{
                         questionViewModel.questionIndex = 0;
+                        questionViewModel.items = [];
                         Navigator.pop(context);
                         Navigator.push(context, MaterialPageRoute(builder: (context) => ResultView(correctAnswerNumber: correctAnswerNumber)));
                       }
