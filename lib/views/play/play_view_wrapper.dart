@@ -6,7 +6,8 @@ class PlayViewWrapper extends StatelessWidget {
 
   String title;
   int categoryId;
-  PlayViewWrapper({Key? key, required this.title, required this.categoryId}) : super(key: key);
+  String playType;
+  PlayViewWrapper({Key? key, required this.title, required this.categoryId, required this.playType}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +26,7 @@ class PlayViewWrapper extends StatelessWidget {
         backgroundColor: const Color(appBarColor),
       ),
       body: SingleChildScrollView(
-        child: PlayView(categoryId: categoryId,),
+        child: PlayView(categoryId: categoryId,playType: playType,),
       ),
     );
   }

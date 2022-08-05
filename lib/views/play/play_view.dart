@@ -10,17 +10,23 @@ import '../../viewModels/play/question_view_model.dart';
 class PlayView extends StatelessWidget {
 
   int categoryId;
-  PlayView({Key? key, required this.categoryId}) : super(key: key);
+  String playType;
+  PlayView({Key? key, required this.categoryId, required this.playType}) : super(key: key);
   bool isSelect = false;
   bool timerAnimation = true;
-  String heroTag = 'resultPopUp';
   int correctAnswerNumber = 0;
+
+  void selectPlayType(QuestionViewModel questionViewModel){
+    if(playType == 'category'){
+      questionViewModel.getQuestionByCategory(categoryId);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
 
     QuestionViewModel questionViewModel = context.watch<QuestionViewModel>();
-    questionViewModel.getQuestionByCategory(categoryId);
+    selectPlayType(questionViewModel);
     final size = MediaQuery.of(context).size;
     final height = size.height;
     final width = size.width;

@@ -31,7 +31,7 @@ class CategoryItemView extends StatelessWidget {
       ),
       onTap: (){
         Navigator.push(context, MaterialPageRoute<String>(
-          builder: (BuildContext context) => PlayViewWrapper(title: name, categoryId: categoryId,),
+          builder: (BuildContext context) => PlayViewWrapper(title: name, categoryId: categoryId, playType: 'category',),
         ),);
       },
     );
