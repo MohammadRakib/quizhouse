@@ -57,4 +57,9 @@ class UserViewModel extends ChangeNotifier{
     this.gems = gems;
   }
 
+  Future updateUserExp() async{
+    await UserServices().updateUserExp();
+    getCurrentUser(); // update all value of the user in the view
+  }
+
 }

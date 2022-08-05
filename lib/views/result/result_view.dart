@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:quizhouse/core/utils/color.dart';
+import 'package:quizhouse/viewModels/user/user_view_model.dart';
 
 class ResultView extends StatelessWidget {
 
@@ -13,7 +15,7 @@ class ResultView extends StatelessWidget {
     final height = size.height;
     final width = size.width;
     final orientation = MediaQuery.of(context).orientation;
-
+    UserViewModel userViewModel = context.watch<UserViewModel>();
     return SafeArea(
       child: Container(
         color: Colors.white,
@@ -56,7 +58,10 @@ class ResultView extends StatelessWidget {
                       borderRadius: BorderRadius.circular(16.0),
                     )),
                   ),
-                  onPressed: () {
+                  onPressed: (){
+                    if(correctAnswerNumber > 0){
+                      userViewModel.updateUserExp();
+                    }
                     Navigator.pop(context);
                   },
                   child: const Padding(

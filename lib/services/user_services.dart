@@ -98,4 +98,16 @@ class UserServices{
     return null;
   }
 
+  // update user exp and lvl
+  Future updateUserExp() async{
+    UserRepository userRepository = UserRepository();
+    UserModel? userModel = await getCurrentUser();
+    userModel!.exp = userModel.exp + 10;
+    if(userModel.exp == 100){
+      userModel.lvl = userModel.lvl + 1;
+      userModel.exp = 0;
+    }
+    await userRepository.updateUser(userModel);
+  }
+
 }
