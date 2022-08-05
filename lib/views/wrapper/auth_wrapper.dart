@@ -10,6 +10,6 @@ class AuthWrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AuthViewModel authViewModel = context.watch<AuthViewModel>();
-    return authViewModel.isLogin? const HomeView() : LoginView();
+    return authViewModel.isLogin? HomeView() : LoginView();
   }
 }

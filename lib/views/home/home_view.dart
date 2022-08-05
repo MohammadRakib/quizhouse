@@ -5,16 +5,25 @@ import 'package:quizhouse/services/question_services.dart';
 import 'package:quizhouse/viewModels/home/category/category_view_model.dart';
 import 'package:quizhouse/viewModels/home/home_view_model.dart';
 import 'package:quizhouse/viewModels/play/question_view_model.dart';
+import 'package:quizhouse/viewModels/user/user_view_model.dart';
 import 'package:quizhouse/views/appbar/home_appbar_view.dart';
 import 'package:provider/provider.dart';
 
 class HomeView extends StatelessWidget {
-  const HomeView({Key? key}) : super(key: key);
+  HomeView({Key? key}) : super(key: key);
+
+  bool initLoading = false;
 
   @override
   Widget build(BuildContext context) {
     HomeViewModel homeViewModel = context.watch<HomeViewModel>();
     CategoryViewModel categoryViewModel = context.watch<CategoryViewModel>();
+    if(!initLoading){
+      UserViewModel userViewModel = context.watch<UserViewModel>();
+      userViewModel.getCurrentUser(); // loading user data and update in the view
+      initLoading = true;
+    }
+
     context.watch<QuestionViewModel>(); // to init question table
     return SafeArea(
       child: Scaffold(

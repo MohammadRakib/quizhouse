@@ -33,7 +33,7 @@ class HomeAppBarView extends StatelessWidget implements PreferredSizeWidget{
             top: 10,
             left: 10,
             child: CircleAvatar(
-              backgroundImage: AssetImage('lib/assets/dummyImage.png'),
+              backgroundImage: AssetImage('lib/assets/logo/profile.jpg'),
               backgroundColor: Color(appBarColor),
             ),
           ),

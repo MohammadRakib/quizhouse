@@ -26,20 +26,20 @@ class ResultView extends StatelessWidget {
             children: [
               Padding(
                 padding: orientation == Orientation.portrait? const EdgeInsets.only(top: 30) : const EdgeInsets.only(top: 50),
-                child: Image.asset(
+                child: Image.asset( correctAnswerNumber == 0? 'lib/assets/icons/crying.png' :
                   'lib/assets/icons/party.png',
-                  height: orientation == Orientation.portrait? height/3 : height/7,
-                  width: orientation == Orientation.portrait? width/3 : width/7,
+                  height: orientation == Orientation.portrait? height/3 : height/5,
+                  width: orientation == Orientation.portrait? width/3 : width/5,
                 ),
               ),
 
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 5),
+                padding: orientation == Orientation.portrait? const EdgeInsets.symmetric(horizontal: 5) : const EdgeInsets.only(top: 15),
                 child: DefaultTextStyle(
                   style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
-                    fontSize: orientation == Orientation.portrait? height/33 : height/50,
+                    fontSize: orientation == Orientation.portrait? height/33 : height/15,
                   ),
                   child: Text('You have answered $correctAnswerNumber questions correctly!!',
                     textAlign: TextAlign.center,
@@ -49,7 +49,7 @@ class ResultView extends StatelessWidget {
 
               const SizedBox(height: 50,),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 50),
+                padding: orientation == Orientation.portrait? const EdgeInsets.symmetric(horizontal: 50) : const EdgeInsets.symmetric(horizontal: 150),
                 child:  ElevatedButton(
                   style: ButtonStyle(
                     minimumSize: orientation == Orientation.portrait? MaterialStateProperty.all(const Size.fromHeight(40)) : MaterialStateProperty.all(const Size.fromHeight(40)),

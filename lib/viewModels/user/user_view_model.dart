@@ -9,10 +9,6 @@ class UserViewModel extends ChangeNotifier{
   dynamic _coin = '10000';
   dynamic _gems = '10000';
 
-  UserViewModel(){
-    getCurrentUser();
-  }
-
   String get name => _name;
 
   set name(String value) {
