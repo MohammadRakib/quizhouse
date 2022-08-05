@@ -31,7 +31,7 @@ class ShopPlayerStatus extends StatelessWidget implements PreferredSizeWidget{
                     onTap: (){
                       Navigator.pop(context);
                     },
-                    child: const Icon(Icons.arrow_back_ios_new_rounded))
+                    child: const Icon(Icons.arrow_back_rounded))
             ),
             Positioned(
               top: 0,

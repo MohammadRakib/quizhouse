@@ -1,3 +1,4 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:quizhouse/models/user_model.dart';
 import 'package:quizhouse/services/user_services.dart';
@@ -36,6 +37,11 @@ class AuthViewModel extends ChangeNotifier{
 
   Future<bool> login(String email, String password) async{
     return await UserServices().login(email.trim(), password.trim());
+  }
+
+  // check if email format is correct
+  bool emailValidate(String email){
+    return EmailValidator.validate(email);
   }
 
   Future<bool> register(String name, String email, String password, bool loginStatus) async{

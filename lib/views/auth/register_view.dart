@@ -124,12 +124,17 @@ class RegisterView extends StatelessWidget {
                           ),
                           onPressed: ()async{
                             if(_formKey.currentState!.validate()){
-                              bool isSuccess = await authViewModel.register(name, email, password, true);
-                              if(isSuccess){
-                                authViewModel.checkIfLogin();
-                                Navigator.pop(context);
+                              if(authViewModel.emailValidate(email.trim())){
+                                bool isSuccess = await authViewModel.register(name, email, password, true);
+                                if(isSuccess){
+                                  authViewModel.checkIfLogin();
+                                  Navigator.pop(context);
+                                }else{
+                                  SnackBar snackBar = const SnackBar(content: Text('user already exist'),);
+                                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                                }
                               }else{
-                                SnackBar snackBar = const SnackBar(content: Text('user already exist'),);
+                                SnackBar snackBar = const SnackBar(content: Text('Enter in correct email format'),);
                                 ScaffoldMessenger.of(context).showSnackBar(snackBar);
                               }
                             }
