@@ -21,10 +21,11 @@ This is a flutter application/Game. UI of this app is responsive. MVVM pattern w
 - [Register](#register)
 - [Login](#login)
 - [Home](#home)
-  - [Challange Room](#challange-room)
+  - [Challenge Room](#challenge-room)
   - [Ongoing Tournament](#ongoing-tournament)
   - [BCS](#bcs)
   - [Category](#category)
+- [Playing Quiz](#playing-quiz)
 - [Shop](#shop)
 - [Logout](#logout)
 
@@ -45,9 +46,63 @@ Here 'Forgot Password' feature is not implemented
 
 ### Home
 
+<img align="left" src="ss/home1.png" width="430" height="700">
+<img src="ss/home2.png" width="430" height="700">
+
+#### AppBar
+<img src="ss/appbar.png" width="800" height="200">
+
+#### Player Status Bar
+<img src="ss/playerStatus.png" width="800" height="200">
+
+#### Challange Room
+
+<img align="left" src="ss/challange.png" width="430" height="700">
+<img src="ss/challange2.png" width="430" height="700">
+
+#### Ongoing Tournament
+<img align="left" src="ss/home1.png" width="430" height="700">
+<img src="ss/tournament.png" width="430" height="700">
+
+#### BCS
+<img align="left" src="ss/home2.png" width="430" height="700">
+<img align="left" src="ss/bcs1.png" width="430" height="700">
+<img src="ss/bcs2.png" width="430" height="700">
+
+#### Category
+<img align="left" src="ss/home2.png" width="430" height="700">
+<img src="ss/category.png" width="430" height="700">
 
 
+### Playing Quiz
 
+All possible scenario is implemented for playing quiz. For example, when an answer is selected you can't change the answer etc.
 
+<img src="ss/play1.png" width="430" height="700">
 
+When time run out, correct answer is shown.
+
+<img src="ss/play2.png" width="430" height="700">
+
+What happens when answer is incorrect?
+
+<img src="ss/play3.png" width="430" height="700">
+
+What happens when answer is correct?
+
+<img src="ss/play4.png" width="430" height="700">
+
+What happens when player accidently press back button when playing quiz?
+
+<img src="ss/play5.png" width="430" height="700">
+
+### Shop
+
+<img align="left" src="ss/shop1.png" width="430" height="700">
+<img align="left" src="ss/shop2.png" width="430" height="700">
+<img src="ss/shop3.png" width="430" height="700">
+
+### Logout
+
+You can Logout
 
