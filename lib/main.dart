@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:quizhouse/core/utils/color.dart';
 import 'package:quizhouse/viewModels/auth/auth_view_model.dart';
 import 'package:quizhouse/viewModels/home/category/category_view_model.dart';
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+
     return MultiProvider(
       providers: [ChangeNotifierProvider<AuthViewModel>(create: (_) => AuthViewModel()),
         ChangeNotifierProvider<HomeViewModel>(create: (_) => HomeViewModel()),

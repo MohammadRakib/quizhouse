@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:quizhouse/core/utils/color.dart';
 import 'package:quizhouse/repository/question_repository.dart';
 import 'package:quizhouse/services/question_services.dart';
@@ -25,13 +26,40 @@ class HomeView extends StatelessWidget {
     }
 
     context.watch<QuestionViewModel>(); // to init question table
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: const Color(homeBackGroundColor),
-        appBar: HomeAppBarView(height: 61,),
-        body: ListView.builder(
-          itemCount: 5 + categoryViewModel.categoryItem.length,
-          itemBuilder: (context,index) =>  homeViewModel.buildListView(index,categoryViewModel.categoryItem),
+
+    void onTapBackButton() {
+      showDialog(context: context, builder: (_) => AlertDialog(
+        content: const Text('do you want to exit the app?'),
+        actions: [
+          TextButton(
+            child: const Text('No'),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+          TextButton(
+            child: const Text('Yes'),
+            onPressed: (){
+              SystemChannels.platform.invokeMethod('SystemNavigator.pop');
+            },
+          ),
+        ],
+      ));
+    }
+
+    return WillPopScope(
+      onWillPop: (){
+        onTapBackButton();
+        return Future.value(false);
+      },
+      child: SafeArea(
+        child: Scaffold(
+          backgroundColor: const Color(homeBackGroundColor),
+          appBar: HomeAppBarView(height: 61,),
+          body: ListView.builder(
+            itemCount: 5 + categoryViewModel.categoryItem.length,
+            itemBuilder: (context,index) =>  homeViewModel.buildListView(index,categoryViewModel.categoryItem),
+          ),
         ),
       ),
     );
