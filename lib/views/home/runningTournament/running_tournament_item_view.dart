@@ -63,7 +63,7 @@ class RunningTournamentItemView extends StatelessWidget {
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 3),
-                        child: Text('$time remaining',
+                        child: Text(time,
                         style: TextStyle(
                           fontSize: orientation == Orientation.portrait? cardWidthP/40 : cardWidthL/40,
                           // fontSize: 7,

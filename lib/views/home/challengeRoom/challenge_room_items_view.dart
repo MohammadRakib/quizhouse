@@ -148,20 +148,6 @@ class ChallengeRoomItemsView extends StatelessWidget {
               ),
             ),
 
-            Positioned(
-              bottom: 13,
-              left: 0,
-              right: 0,
-              child: Center(
-                child: Text('Players in Online: 0',
-                  style: TextStyle(
-                    color: const Color(challengeOnlinePlayerColor),
-                    fontSize:  orientation == Orientation.portrait? cardWidthP/41 : cardWidthL/48,
-                  ),
-                ),
-              ),
-            ),
-
           ],
         ),
       ),

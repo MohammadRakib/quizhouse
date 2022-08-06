@@ -32,7 +32,7 @@ class RegisterView extends StatelessWidget {
             children:  [
               const SizedBox(height: 30.0,),
               Center(
-                child: Image.asset('lib/assets/logo/quizLogo.png',
+                child: Image.asset('lib/assets/logo/app_logo1.png',
                   height: height/7,
                   width: width/3,
                 ),

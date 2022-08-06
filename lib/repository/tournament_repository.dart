@@ -28,10 +28,10 @@ class TournamentRepository{
     final List<Map<String, dynamic>> maps = await db.query('tournament');
 
     final List<RunningTournamentModel> runningTournamentList = [
-      RunningTournamentModel(title: 'QG Mega Quiz', time: '1 week', prize: 'Samsung Smart Phone!',color: '0xFFBCAAA4'),
-      RunningTournamentModel(title: 'QG EID Quiz 1', time: '3 days', prize: '30000 Taka!',color: '0xFFFFB74D'),
-      RunningTournamentModel(title: 'QG EID Quiz 2', time: '1 week', prize: '20000 Taka!',color: '0xFF78909C'),
-      RunningTournamentModel(title: 'QG Small Quiz', time: '5 hours', prize: '5000 Taka!',color: '0xFF9575CD'),
+      RunningTournamentModel(title: 'QG Mega Quiz', time: 'Permanent', prize: 'Samsung Smart Phone!',color: '0xFFBCAAA4'),
+      RunningTournamentModel(title: 'QG EID Quiz 1', time: 'Permanent', prize: '30000 Taka!',color: '0xFFFFB74D'),
+      RunningTournamentModel(title: 'QG EID Quiz 2', time: 'Permanent', prize: '20000 Taka!',color: '0xFF78909C'),
+      RunningTournamentModel(title: 'QG Small Quiz', time: 'Permanent', prize: '5000 Taka!',color: '0xFF9575CD'),
     ];
 
     if(maps.isNotEmpty){

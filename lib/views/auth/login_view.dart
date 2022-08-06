@@ -30,7 +30,7 @@ class LoginView extends StatelessWidget {
             children:  [
               const SizedBox(height: 50.0,),
               Center(
-                child: Image.asset('lib/assets/logo/quizLogo.png',
+                child: Image.asset('lib/assets/logo/app_logo1.png',
                   height: height/6,
                   width: width/2,
                 ),
