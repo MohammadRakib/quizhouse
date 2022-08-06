@@ -26,7 +26,7 @@ class CoinItemView extends StatelessWidget {
           barrierDismissible: false, // user must tap button!
           builder: (BuildContext context) {
             return AlertDialog(
-              content: const Text('Do you want to buy coin?'),
+              content: Text('Do you want to buy $quantity coins for $price gems?'),
               actions: <Widget>[
                 TextButton(
                   child: const Text('No'),

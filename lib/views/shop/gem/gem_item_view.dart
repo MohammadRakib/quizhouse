@@ -26,7 +26,7 @@ class GemItemView extends StatelessWidget {
           barrierDismissible: false, // user must tap button!
           builder: (BuildContext context) {
             return AlertDialog(
-              content: const Text('Do you want to buy gems?'),
+              content: Text('Do you want to buy $quantity gems for $price?'),
               actions: <Widget>[
                 TextButton(
                   child: const Text('No'),
