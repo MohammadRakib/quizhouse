@@ -27,6 +27,7 @@ This is a flutter application/Game. UI of this app is responsive. MVVM pattern w
   - [Category](#category)
 - [Playing Quiz](#playing-quiz)
 - [Shop](#shop)
+- [App exit alert](#app-exit-alert)
 - [Logout](#logout)
 
 ## Features details with screenshots
@@ -76,7 +77,7 @@ Here 'Forgot Password' feature is not implemented
 
 ### Playing Quiz
 
-All possible scenario is implemented for playing quiz. For example, when an answer is selected you can't change the answer etc.
+All possible scenario is implemented for playing quiz. For example, when an answer is selected you can't change the answer etc. When image is part of the question, image will also show up. But for now no question have an image.
 
 <img src="ss/play1.png" width="430" height="700">
 
@@ -101,6 +102,10 @@ What happens when player accidently press back button when playing quiz?
 <img align="left" src="ss/shop1.png" width="430" height="700">
 <img align="left" src="ss/shop2.png" width="430" height="700">
 <img src="ss/shop3.png" width="430" height="700">
+
+### App exit alert
+
+<img src="ss/exit_alert_popUp.png" width="430" height="700">
 
 ### Logout
 
